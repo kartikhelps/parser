@@ -1,0 +1,42 @@
+import { Button, Checkbox, FormControlLabel, Grid, TextField, Typography } from "@mui/material"
+import { Box } from "@mui/system"
+import { useEffect, useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { toast } from "react-toastify"
+
+{{#each data }}
+      {{#switch type}}
+    {{#case "Nav"}}
+import {{@root.name}}Nav from '{{concat "./" @root.name}}Nav'
+    {{/case}}
+      {{#case "Form"}}
+    import {{@root.name}}Form from '{{concat "./" @root.name}}Form'
+    {{/case}}
+      {{/switch}}
+    
+      {{/each}}
+
+
+
+function {{name}}({setSection,vars}) {
+  const navigate = useNavigate()
+
+  return (
+    <>
+      {{#each data }}
+      {{#switch type}}
+    {{#case "Nav"}}
+      <{{@root.name}}Nav vars={vars} setSection={setSection}/>
+      {{create fields "./templates/navbar.hbs" (concat @root.path "/") (concat @root.name "Nav.jsx") @root.name}}
+    {{/case}}
+      {{#case "Form"}}
+      <{{@root.name}}Form vars={vars} setSection={setSection}/>
+      {{create fields "./templates/form.hbs" (concat @root.path "/") (concat @root.name "Form.jsx") @root.name}}
+    {{/case}}
+      {{/switch}}
+       {{/each}}
+    </>
+  )
+}
+
+export default {{name}}
