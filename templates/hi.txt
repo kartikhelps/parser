@@ -1,0 +1,8 @@
+create -->function name
+data --> coming from json data 
+template --> template name ,template path 
+file path --> where to save
+file name --> which name you have to save a file 
+
+//donot touch the index.js 
+// you have only use the template and the json
