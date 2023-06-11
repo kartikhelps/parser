@@ -1,0 +1,47 @@
+import { IonButton, IonCheckbox, IonContent, IonGrid, IonText, IonToast } from "@ionic/react";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+{{#each data}}
+{{#switch type}}
+  {{#case "Nav"}}
+import {{@root.name}}Nav from "./{{name}}Nav";
+  {{/case}}
+  {{#case "Form"}}
+import {{@root.name}}Form from "./{{name}}Form";
+  {{/case}}
+{{/switch}}
+{{/each}}
+
+function {{name}}({ setSection, vars }) {
+  const navigate = useNavigate();
+  const [toastOpen, setToastOpen] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastColor, setToastColor] = useState("");
+
+  return (
+    <>
+      <IonContent>
+        <IonToast
+          isOpen={toastOpen}
+          message={toastMessage}
+          color={toastColor}
+          duration={3000}
+          onDidDismiss={() => setToastOpen(false)}
+        />
+        {{#each data}}
+        {{#switch type}}
+          {{#case "Nav"}}
+          <{{@root.name}}Nav vars={vars} setSection={setSection} />
+          {{/case}}
+          {{#case "Form"}}
+          <{{@root.name}}Form vars={vars} setSection={setSection} />
+          {{/case}}
+        {{/switch}}
+        {{/each}}
+      </IonContent>
+    </>
+  );
+}
+
+export default {{name}};

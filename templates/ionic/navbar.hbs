@@ -1,0 +1,50 @@
+{{!-- Import Ionic Components --}}
+import React from 'react';
+import { IonAppBar, IonToolbar, IonButtons, IonButton, IonMenuButton, IonTitle, IonContent, IonList, IonItem, IonLabel,
+IonIcon } from '@ionic/react';
+import { menuOutline } from 'ionicons/icons';
+
+const pages = [{{#each data}}"{{name}}",{{/each}}];
+
+function ResponsiveAppBar({ setSection, vars }) {
+const handleOpenNavMenu = () => {
+// Handle opening the navigation menu
+};
+
+const handleCloseNavMenu = () => {
+// Handle closing the navigation menu
+};
+
+{{#each data}}
+const {{name}}Change = () => {
+{{#each action.Actions}}
+{{#ifeq type "ShowSection"}}
+setSection((prev) => ({...prev, {{{objToString fields}}} }));
+{{/ifeq}}
+{{#ifeq type "Redirect"}}
+navigate('/{{fields.url}}');
+{{/ifeq}}
+{{/each}}
+};
+{{/each}}
+
+return (
+<IonAppBar position="static">
+    <IonToolbar>
+        <IonButtons slot="start">
+            <IonMenuButton onClick={handleOpenNavMenu} />
+        </IonButtons>
+        <IonTitle>LOGO</IonTitle>
+        <IonButtons slot="end">
+            {{#each data}}
+            <IonButton onClick={{{name}}Change}>
+                {{name}}
+            </IonButton>
+            {{/each}}
+        </IonButtons>
+    </IonToolbar>
+</IonAppBar>
+);
+}
+
+export default ResponsiveAppBar;

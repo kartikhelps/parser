@@ -1,0 +1,80 @@
+{{!-- Import Ionic Components --}}
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios';
+import { IonButton, IonContent, IonPage, IonToast } from "@ionic/react";
+
+{{#each data}}
+{{#ifnoteq name "Onload_Config"}}
+import {{name}} from "./{{name}}";
+{{/ifnoteq}}
+{{/each}}
+
+const {{name}} = () => {
+  const navigate = useNavigate();
+
+  const [toast, setToast] = useState({ isOpen: false, message: "", color: "" });
+
+  const [vars, setVars] = useState({});
+  const [isLoading, setLoad] = useState(false);
+  {{#each data}}
+  {{#ifeq name "Onload_Config"}}
+  {{#each components.[0].fields.[0].action.Actions}}
+  {{#ifeq type "ShowSection"}}
+  const [section, setSection] = useState({ {{{objToString fields}}} });
+  {{/ifeq}}
+
+  {{#ifeq type "CallAPI"}}
+  useEffect(() => {
+    axios.{{fields.type}}(import.meta.env.VITE_API +  '{{fields.route}}').then((res) => {
+      {{#each Success}}
+      {{#ifeq type "setVar"}}
+      setVars(res.data.data);
+      {{/ifeq}}
+      {{/each}}
+      setLoad(true);
+    }).catch(err => {
+      setToast({ isOpen: true, message: err.response.data.error, color: "danger" });
+    });
+  }, []);
+  {{/ifeq}}
+
+  {{/each}}
+  {{/ifeq}}
+  {{/each}}
+
+  return (
+    <IonPage>
+      <IonContent>
+        <IonToast
+          isOpen={toast.isOpen}
+          message={toast.message}
+          color={toast.color}
+          duration={6000}
+          onDidDismiss={() => setToast({ isOpen: false, message: "", color: "" })}
+        />
+        {{#each data}}
+        {{#switch name}}
+        {{#case "Onload_Config"}}
+        {isLoading && (
+          <>
+            {{/case}}
+            {{#case "Header"}}
+            <{{name}} vars={vars} setSection={setSection} />
+            {{create components "./templates/sectionIndex.hbs" (concat @root.path name "/") "index.jsx" name}}
+          {{/case}}
+          {{#default}}
+            {section.{{name}}State && <{{name}} vars={vars} setSection={setSection} />}
+            {{create components "./templates/sectionIndex.hbs" (concat @root.path name "/") "index.jsx" name}}
+          {{/default}}
+          {{/switch}}
+        {{/each}}
+        </>
+        )
+        }
+      </IonContent>
+    </IonPage>
+  );
+}
+
+export default {{name}};

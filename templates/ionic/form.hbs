@@ -1,0 +1,138 @@
+{{!-- Import Ionic Components --}}
+import React, { useState } from 'react';
+import { IonButton, IonCheckbox, IonContent, IonFormControl, IonHeader, IonInput, IonItem, IonLabel, IonPage, IonRadio,
+IonRadioGroup, IonSelect, IonSelectOption, IonSnackbar, IonToolbar } from '@ionic/react';
+import axios from 'axios';
+
+const {{name}}Form = ({ setSection, vars }) => {
+const navigate = useNavigate();
+let Regex = { password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/, email: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/ };
+const [toast, setToast] = useState({ open: false, status: "", msg: "" });
+
+const [formData, setFormData] = useState({
+{{#each data}}
+{{name}}: '',
+{{/each}}
+});
+
+const handleChange = (e) => {
+const { name, value, type, checked } = e.target;
+setFormData((prevData) => ({
+...prevData,
+[name]: type === 'checkbox' ? checked : value,
+}));
+};
+
+const handleSubmit = (e) => {
+e.preventDefault();
+const sendData = {
+{{#each data}}
+{{#if mapField}}
+{{name}}: formData.{{name}},
+{{/if}}
+{{/each}}
+};
+
+{{#each data}}
+{{#ifeq fieldType "Button"}}
+{{#each action.Actions}}
+{{#ifeq type "CallAPI"}}
+axios.{{fields.type}}(import.meta.env.VITE_API + '{{fields.route}}', {
+...sendData
+})
+.then((res) => {
+{{#each Success}}
+{{#ifeq type "setVar"}}
+setVars(res.data.data)
+{{/ifeq}}
+{{#ifeq type "ShowSection"}}
+setSection((prev) => ({...prev, {{{objToString fields}}} }))
+{{/ifeq}}
+{{#ifeq type "Redirect"}}
+navigate('/{{fields.url}}')
+{{/ifeq}}
+{{/each}}
+})
+.catch((err) => {
+setToast({ open: true, msg: err.response.data.error, status: "error" });
+});
+{{/ifeq}}
+{{/each}}
+{{/ifeq}}
+{{/each}}
+setLoad(true);
+};
+
+return (
+<IonPage>
+    <IonHeader>
+        <IonToolbar>
+            <IonLabel>{{name}}Form</IonLabel>
+        </IonToolbar>
+    </IonHeader>
+    <IonContent>
+        <IonSnackbar open={toast.open} duration={6000} onDidDismiss={()=> setToast({ open: false, status: "", msg: ""
+            })}>
+            <IonLabel>{toast.msg}</IonLabel>
+        </IonSnackbar>
+        <form onSubmit={handleSubmit}>
+            {{#each data}}
+            {{#if (eq fieldType "Textbox")}}
+            <IonItem>
+                <IonLabel position="floating">{{label}}</IonLabel>
+                <IonInput name="{{name}}" value={formData.{{name}} } onIonChange={handleChange} type="text"></IonInput>
+            </IonItem>
+            {{/if}}
+            {{#if (eq fieldType "Password")}}
+            <IonItem>
+                <IonLabel position="floating">{{label}}</IonLabel>
+                <IonInput name="{{name}}" value={formData.{{name}} } onIonChange={handleChange} type="password">
+                </IonInput>
+            </IonItem>
+            {{/if}}
+            {{#if (eq fieldType "Dropdown")}}
+            <IonItem>
+                <IonLabel>{{label}}</IonLabel>
+                <IonSelect name="{{name}}" value={formData.{{name}} } onIonChange={handleChange}>
+                    {{#each vars.{{masters}}}}
+                    <IonSelectOption value="{{value}}">{{name}}</IonSelectOption>
+                    {{/each}}
+                </IonSelect>
+            </IonItem>
+            {{/if}}
+            {{#if (eq fieldType "Checkbox")}}
+            <IonItem>
+                <IonCheckbox name="{{name}}" checked={formData.{{name}} } onIonChange={handleChange} />
+                <IonLabel>Checkbox 1</IonLabel>
+            </IonItem>
+            {{/if}}
+            {{#if (eq fieldType "Button")}}
+            <IonButton type="{{name}}" onClick={(e)=> handleSubmit(e)}
+                color="primary"
+                expand="full"
+                >
+                {{label}}
+            </IonButton>
+            {{/if}}
+            {{#if (eq fieldType "options")}}
+            <IonItem>
+                <IonRadioGroup name="radio" value={formData.{{name}} } onIonChange={handleChange}>
+                    <IonItem>
+                        <IonRadio slot="start" value="option1" />
+                        <IonLabel>Option 1</IonLabel>
+                    </IonItem>
+                    <IonItem>
+                        <IonRadio slot="start" value="option2" />
+                        <IonLabel>Option 2</IonLabel>
+                    </IonItem>
+                </IonRadioGroup>
+            </IonItem>
+            {{/if}}
+            {{/each}}
+        </form>
+    </IonContent>
+</IonPage>
+);
+}
+
+export default {{name}}Form;

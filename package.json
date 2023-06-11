@@ -10,6 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@capacitor/android": "^5.0.4",
+    "@capacitor/cli": "^5.0.4",
+    "@capacitor/core": "^5.0.4",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.1",
     "@mui/system": "^5.12.1",
@@ -17,6 +20,8 @@
     "@vitejs/plugin-react": "^4.0.0",
     "axios": "^1.3.6",
     "dotenv": "^16.0.3",
+    "expect": "^29.5.0",
+    "expert": "^0.3.2",
     "google-spreadsheet": "^3.3.0",
     "handlebars": "^4.7.7",
     "mongoose": "^7.0.4",

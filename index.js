@@ -86,7 +86,9 @@ Handlebars.registerHelper("ifnoteq", function (a, b, options) {
 Handlebars.registerHelper("create", function () {
   var arg = Array.prototype.slice.call(arguments, 0, arguments.length - 1)
   templateCreator({ data: arg[0], name: arg[4], path: arg[2] }, arg[1], arg[3], arg[2])
+  // [{}]     {} => data
   return ""
+
 })
 
 const templateCreator = (data, file, out, path) => {
@@ -98,16 +100,21 @@ const templateCreator = (data, file, out, path) => {
 }
 
 const main = async () => {
-  await jsonData()
-  const sheetData = require("./data.json")
+ 
   const selectedConfig = "react" // Change this to 'ionic' or other configurations as needed
 
   if (selectedConfig === "react") {
+     await jsonData()
+  const sheetData = require("./data.json")
     const executeReactCommands = require("./reactCommands")
-    executeReactCommands()
+    executeReactCommands(sheetData,templateCreator)
   } else if (selectedConfig === "ionic") {
+    console.log("i")
+     await jsonData("1SYD1Arng7eWa8BD2NOqFbfNsrhTT6NDioSE47W1ZqcM")
+  const sheetData = require("./data.json")
     const executeIonicCommands = require("./ionicCommands")
-    executeIonicCommands()
+    executeIonicCommands(sheetData,templateCreator)
+
   }
 }
 
