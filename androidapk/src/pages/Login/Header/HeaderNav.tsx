@@ -3,7 +3,7 @@ import { IonToolbar, IonButtons, IonButton, IonMenuButton, IonTitle, IonHeader, 
 import { menuOutline, personOutline } from 'ionicons/icons';
 import { useHistory } from 'react-router-dom';
 
-const pages = [ {{#each data}} "{{name}}", {{/each}} ];
+const pages = [  "Signin",  "Signup",  ];
 
 function ResponsiveAppBar({ setSection, vars }) {
   const [showMenu, setShowMenu] = useState(false);
@@ -22,18 +22,12 @@ function ResponsiveAppBar({ setSection, vars }) {
   };
 
   const handleNavigation = (page) => {
-    {{#each data}}
-    if (page === "{{name}}") {
-      {{#each action.Actions}}
-      {{#ifeq type "ShowSection"}}
-      setSection((prev) => ({ ...prev, {{{objToString fields}}} }));
-      {{/ifeq}}
-      {{#ifeq type "Redirect"}}
-      history.push('/{{fields.url}}');
-      {{/ifeq}}
-      {{/each}}
+    if (page === "Signin") {
+      setSection((prev) => ({ ...prev, "SigninState":true,"VerificationState":false,"SignupState":false }));
     }
-    {{/each}}
+    if (page === "Signup") {
+      setSection((prev) => ({ ...prev, "SigninState":false,"VerificationState":false,"SignupState":true }));
+    }
   };
 
   return (
@@ -41,11 +35,12 @@ function ResponsiveAppBar({ setSection, vars }) {
      <IonMenu side="start" contentId="main-content" isOpen={showMenu} onIonDidClose={() => setShowMenu(false)}>
         <IonContent>
           <IonList>
-            {{#each data}}
-            <IonItem button onClick={() => handleMenuItemClick("{{name}}")}>
-              <IonLabel>{{name}}</IonLabel>
+            <IonItem button onClick={() => handleMenuItemClick("Signin")}>
+              <IonLabel>Signin</IonLabel>
             </IonItem>
-            {{/each}}
+            <IonItem button onClick={() => handleMenuItemClick("Signup")}>
+              <IonLabel>Signup</IonLabel>
+            </IonItem>
 
           </IonList>
         </IonContent>

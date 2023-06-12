@@ -51,7 +51,9 @@ const Dashboard = () => {
             
             {section.Card_3State && <Card_3 vars={vars} setSection={setSection} />}
             
-        </>)}
+        </>
+        )
+        }
       </IonContent>
     </IonPage>
   );

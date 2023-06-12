@@ -3,7 +3,7 @@ import { IonToolbar, IonButtons, IonButton, IonMenuButton, IonTitle, IonHeader, 
 import { menuOutline, personOutline } from 'ionicons/icons';
 import { useHistory } from 'react-router-dom';
 
-const pages = [ {{#each data}} "{{name}}", {{/each}} ];
+const pages = [  "title",  "about",  "blog",  ];
 
 function ResponsiveAppBar({ setSection, vars }) {
   const [showMenu, setShowMenu] = useState(false);
@@ -22,18 +22,12 @@ function ResponsiveAppBar({ setSection, vars }) {
   };
 
   const handleNavigation = (page) => {
-    {{#each data}}
-    if (page === "{{name}}") {
-      {{#each action.Actions}}
-      {{#ifeq type "ShowSection"}}
-      setSection((prev) => ({ ...prev, {{{objToString fields}}} }));
-      {{/ifeq}}
-      {{#ifeq type "Redirect"}}
-      history.push('/{{fields.url}}');
-      {{/ifeq}}
-      {{/each}}
+    if (page === "title") {
     }
-    {{/each}}
+    if (page === "about") {
+    }
+    if (page === "blog") {
+    }
   };
 
   return (
@@ -41,11 +35,15 @@ function ResponsiveAppBar({ setSection, vars }) {
      <IonMenu side="start" contentId="main-content" isOpen={showMenu} onIonDidClose={() => setShowMenu(false)}>
         <IonContent>
           <IonList>
-            {{#each data}}
-            <IonItem button onClick={() => handleMenuItemClick("{{name}}")}>
-              <IonLabel>{{name}}</IonLabel>
+            <IonItem button onClick={() => handleMenuItemClick("title")}>
+              <IonLabel>title</IonLabel>
             </IonItem>
-            {{/each}}
+            <IonItem button onClick={() => handleMenuItemClick("about")}>
+              <IonLabel>about</IonLabel>
+            </IonItem>
+            <IonItem button onClick={() => handleMenuItemClick("blog")}>
+              <IonLabel>blog</IonLabel>
+            </IonItem>
 
           </IonList>
         </IonContent>

@@ -4,30 +4,21 @@ import axios from 'axios';
 import { IonButton, IonContent, IonPage, IonToast } from "@ionic/react";
 import environment from "../../environment"
 
-import Header from "./Header";
 import Banner from "./Banner";
-import Carousel from "./Carousel";
-import Footer from "./Footer";
+import Content from "./Content";
+import Newsletter from "./Newsletter";
 
-const Home = () => {
+const About = () => {
   const history = useHistory();
 
   const [toast, setToast] = useState({ isOpen: false, message: "", color: "" });
 
   const [vars, setVars] = useState({});
   const [isLoading, setLoad] = useState(false);
-  const [section, setSection] = useState({ "NavbarState":true,"HeaderState":true,"BannerState":true,"CarouselState":true,"FooterState":true });
+  const [section, setSection] = useState({ "NavbarState":true,"footerState":true,"filterState":false });
 
 
 
-  useEffect(() => {
-    axios.get(`${environment.VITE_API} master/`).then((res) => {
-      setVars(res.data.data);
-      setLoad(true);
-    }).catch(err => {
-      setToast({ isOpen: true, message: err.response.data.error, color: "danger" });
-    });
-  }, []);
 
 
   return (
@@ -42,13 +33,11 @@ const Home = () => {
         />
         {isLoading && (
           <>
-            <Header vars={vars} setSection={setSection} />
-            
             {section.BannerState && <Banner vars={vars} setSection={setSection} />}
             
-            {section.CarouselState && <Carousel vars={vars} setSection={setSection} />}
+            {section.ContentState && <Content vars={vars} setSection={setSection} />}
             
-            {section.FooterState && <Footer vars={vars} setSection={setSection} />}
+            {section.NewsletterState && <Newsletter vars={vars} setSection={setSection} />}
             
         </>
         )
@@ -58,4 +47,4 @@ const Home = () => {
   );
 }
 
-export default Home;
+export default About;

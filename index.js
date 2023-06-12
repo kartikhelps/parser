@@ -101,7 +101,7 @@ const templateCreator = (data, file, out, path) => {
 
 const main = async () => {
  
-  const selectedConfig = "react" // Change this to 'ionic' or other configurations as needed
+  const selectedConfig = "ionic" // Change this to 'ionic' or other configurations as needed
 
   if (selectedConfig === "react") {
      await jsonData()

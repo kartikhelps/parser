@@ -4,25 +4,22 @@ import axios from 'axios';
 import { IonButton, IonContent, IonPage, IonToast } from "@ionic/react";
 import environment from "../../environment"
 
-import Signin from "./Signin";
-import Signup from "./Signup";
-import Verification from "./Verification";
-import Header from "./Header";
+import Blog from "./Blog";
+import Content from "./Content";
 
-const Login = () => {
+const Blog = () => {
   const history = useHistory();
 
   const [toast, setToast] = useState({ isOpen: false, message: "", color: "" });
 
   const [vars, setVars] = useState({});
   const [isLoading, setLoad] = useState(false);
-  const [section, setSection] = useState({ "SigninState":true,"SignupState":false,"VerificationState":false });
+  const [section, setSection] = useState({ "NavbarState":true,"filterState":false,"footerState":true });
 
 
 
   useEffect(() => {
     axios.get(`${environment.VITE_API} master/`).then((res) => {
-      setVars(res.data.data);
       setLoad(true);
     }).catch(err => {
       setToast({ isOpen: true, message: err.response.data.error, color: "danger" });
@@ -42,13 +39,9 @@ const Login = () => {
         />
         {isLoading && (
           <>
-            {section.SigninState && <Signin vars={vars} setSection={setSection} />}
+            {section.BlogState && <Blog vars={vars} setSection={setSection} />}
             
-            {section.SignupState && <Signup vars={vars} setSection={setSection} />}
-            
-            {section.VerificationState && <Verification vars={vars} setSection={setSection} />}
-            
-            <Header vars={vars} setSection={setSection} />
+            {section.ContentState && <Content vars={vars} setSection={setSection} />}
             
         </>
         )
@@ -58,4 +51,4 @@ const Login = () => {
   );
 }
 
-export default Login;
+export default Blog;

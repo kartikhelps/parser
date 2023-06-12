@@ -3,9 +3,11 @@ import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
 import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
-import TableView from './pages/TableView';
 import Home from './pages/Home';
+import Results from './pages/Results';
+import About from './pages/About';
+import Blog from './pages/Blog';
+import Properties from './pages/Properties';
 
 
 
@@ -38,16 +40,24 @@ const App: React.FC = () => (
                 <Login />
                 
             </Route>
-            <Route exact path="/Dashboard">
-                <Dashboard />
-                
-            </Route>
-            <Route exact path="/TableView">
-                <TableView />
-                
-            </Route>
             <Route exact path="/Home">
                 <Home />
+                
+            </Route>
+            <Route exact path="/Results">
+                <Results />
+                
+            </Route>
+            <Route exact path="/About">
+                <About />
+                
+            </Route>
+            <Route exact path="/Blog">
+                <Blog />
+                
+            </Route>
+            <Route exact path="/Properties">
+                <Properties />
                 
             </Route>
         </IonRouterOutlet>

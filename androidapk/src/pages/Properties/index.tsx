@@ -4,19 +4,16 @@ import axios from 'axios';
 import { IonButton, IonContent, IonPage, IonToast } from "@ionic/react";
 import environment from "../../environment"
 
-import Signin from "./Signin";
-import Signup from "./Signup";
-import Verification from "./Verification";
-import Header from "./Header";
+import Property_table from "./Property_table";
 
-const Login = () => {
+const Properties = () => {
   const history = useHistory();
 
   const [toast, setToast] = useState({ isOpen: false, message: "", color: "" });
 
   const [vars, setVars] = useState({});
   const [isLoading, setLoad] = useState(false);
-  const [section, setSection] = useState({ "SigninState":true,"SignupState":false,"VerificationState":false });
+  const [section, setSection] = useState({ "NavbarState":true,"bannerState":false,"footerState":true });
 
 
 
@@ -42,13 +39,7 @@ const Login = () => {
         />
         {isLoading && (
           <>
-            {section.SigninState && <Signin vars={vars} setSection={setSection} />}
-            
-            {section.SignupState && <Signup vars={vars} setSection={setSection} />}
-            
-            {section.VerificationState && <Verification vars={vars} setSection={setSection} />}
-            
-            <Header vars={vars} setSection={setSection} />
+            {section.Property_tableState && <Property_table vars={vars} setSection={setSection} />}
             
         </>
         )
@@ -58,4 +49,4 @@ const Login = () => {
   );
 }
 
-export default Login;
+export default Properties;

@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from 'axios';
 import { IonButton, IonContent, IonPage, IonToast } from "@ionic/react";
+import environment from "../../environment"
 
-import ListSection from "./ListSection";
+import Filter from "./Filter";
+import Card from "./Card";
+import Navigation from "./Navigation";
 
-const TableView = () => {
-  const navigate = useNavigate();
+const Results = () => {
+  const history = useHistory();
 
   const [toast, setToast] = useState({ isOpen: false, message: "", color: "" });
 
   const [vars, setVars] = useState({});
   const [isLoading, setLoad] = useState(false);
+  const [section, setSection] = useState({ "NavbarState":true,"HeaderState":true,"BannerState":true,"ListViewState":true,"FooterState":true });
+
+
+
+
 
   return (
     <IonPage>
@@ -25,7 +33,11 @@ const TableView = () => {
         />
         {isLoading && (
           <>
-            {section.ListSectionState && <ListSection vars={vars} setSection={setSection} />}
+            {section.FilterState && <Filter vars={vars} setSection={setSection} />}
+            
+            {section.CardState && <Card vars={vars} setSection={setSection} />}
+            
+            {section.NavigationState && <Navigation vars={vars} setSection={setSection} />}
             
         </>
         )
@@ -35,4 +47,4 @@ const TableView = () => {
   );
 }
 
-export default TableView;
+export default Results;
