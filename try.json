@@ -1,0 +1,21 @@
+{
+    "Actions": [
+      {
+        "step": 1,
+        "type": "callApi",
+        "fields": {
+          "button": true,
+          "onSuccess": true
+        }
+      },
+      {
+        "step": 2,
+        "type": "onSuccess",
+        "fields": {
+          "type": "get",
+          "route": ""
+        }
+      }
+    ]
+  }
+  

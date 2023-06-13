@@ -12,6 +12,12 @@ import {{@root.name}}Nav from '{{concat "./" @root.name}}Nav'
       {{#case "Form"}}
     import {{@root.name}}Form from '{{concat "./" @root.name}}Form'
     {{/case}}
+     {{#case "ListView"}}
+    import {{@root.name}}ListView from '{{concat "./" @root.name}}ListView'
+    {{/case}}
+    {{#case "DisplayCard"}}
+    import {{@root.name}}DisplayCard from '{{concat "./" @root.name}}DisplayCard'
+    {{/case}}
       {{/switch}}
     
       {{/each}}
@@ -33,6 +39,15 @@ function {{name}}({setSection,vars}) {
       <{{@root.name}}Form vars={vars} setSection={setSection}/>
       {{create fields "./templates/form.hbs" (concat @root.path "/") (concat @root.name "Form.jsx") @root.name}}
     {{/case}}
+     {{#case "ListView"}}
+      <{{@root.name}}ListView vars={vars} setSection={setSection}/>
+      {{create fields "./templates/listView.hbs" (concat @root.path "/") (concat @root.name "ListView.jsx") @root.name}}
+    {{/case}} 
+     
+     {{#case "DisplayCard"}}
+      <{{@root.name}}DisplayCard vars={vars} setSection={setSection}/>
+      {{create fields "./templates/displayCard.hbs" (concat @root.path "/") (concat @root.name "displayCard.jsx") @root.name}}
+    {{/case}} 
       {{/switch}}
        {{/each}}
     </>

@@ -3,7 +3,7 @@ var fs = require("fs")
 const fileOp = require("./txtOperator")
 const credentials = require("./pass.json")
 
-const SPREADSHEET_ID = "1qCwrCW8v6hDHPWuvwGsZrUgDrV41or7AQWsgWADCyoo"
+const SPREADSHEET_ID = "1mVzip6mAkCG_Smk4ddQyPJp6q9P1lc3VHi6DJK7QRzA"
 
 async function getRowsFromGoogleSheet() {
   const doc = new GoogleSpreadsheet(SPREADSHEET_ID)
@@ -32,6 +32,7 @@ async function googleSheetToJSON() {
     const section = currentScreen.sections.find((section) => section.name === row.Section_name)
 
     if (!section) {
+      console.log(row.action,"if")
       const newSection = {
         name: row.Section_name,
         components: [
@@ -59,8 +60,11 @@ async function googleSheetToJSON() {
       }
 
       currentScreen.sections.push(newSection)
-    } else {
+    } 
+    else {
+      console.log(row.action)
       section.components[0].fields.push({
+
         name: row.Fieldname,
         fieldType: row.FieldType,
         mandatory: row.Mandatory === "Yes",

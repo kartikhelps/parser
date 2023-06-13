@@ -1,0 +1,57 @@
+import React from 'react';
+import { makeStyles } from '@mui/styles';
+import { TextField, Button, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: theme.spacing(2),
+    margin: theme.spacing(2),
+  },
+}));
+
+const FilterComponent = ({ onFilter }) => {
+  const classes = useStyles();
+  const [filterValue, setFilterValue] = React.useState('');
+  const [category, setCategory] = React.useState('');
+
+  const handleFilterChange = (event) => {
+    setFilterValue(event.target.value);
+  };
+
+  const handleCategoryChange = (event) => {
+    setCategory(event.target.value);
+  };
+
+  const handleFilterClick = () => {
+    onFilter(filterValue, category);
+  };
+
+  return (
+    <div className={classes.root}>
+        {{#each data}}
+      <TextField
+        label="Filter"
+        value={filterValue}
+        onChange={handleFilterChange}
+      />
+      <FormControl>
+        <InputLabel>{{name}}</InputLabel>
+        <Select value={category} onChange={handleCategoryChange}>
+          <MenuItem value="">All</MenuItem>
+          <MenuItem value="category1">Category 1</MenuItem>
+          <MenuItem value="category2">Category 2</MenuItem>
+          <MenuItem value="category3">Category 3</MenuItem>
+        </Select>
+      </FormControl>
+      {{/name}}
+      <Button variant="contained" onClick={handleFilterClick}>
+        Filter 
+      </Button>
+    </div>
+  );
+};
+
+export default FilterComponent;

@@ -1,0 +1,40 @@
+import React from 'react';
+import { makeStyles } from '@mui/styles';
+import { Container, Typography, Link } from '@mui/material';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    padding: theme.spacing(2),
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText,
+    marginTop: 'auto',
+  },
+}));
+
+const FooterComponent = () => {
+  const classes = useStyles();
+
+  return (
+    <footer className={classes.root}>
+      <Container maxWidth="md">
+        <Typography variant="body1" align="center">
+           {new Date().getFullYear()} My Awesome Website
+        </Typography>
+        <Typography variant="body2" align="center">
+          Made with love using Material-UI
+        </Typography>
+        <Typography variant="body2" align="center">
+          <Link href="https://www.example.com" color="inherit">
+            Privacy Policy
+          </Link>
+         
+          <Link href="https://www.example.com" color="inherit">
+            Terms of Service
+          </Link>
+        </Typography>
+      </Container>
+    </footer>
+  );
+};
+
+export default FooterComponent;
