@@ -84,9 +84,9 @@ async function googleSheetToJSON() {
 
 // module.exports = googleSheetToJSON
 
-// googleSheetToJSON()
+googleSheetToJSON()
 
-module.exports = googleSheetToJSON
+// module.exports = googleSheetToJSON
 
 // const customString = "Onload(\n ShowSection(Signin)|\n HideSection(Signup)| \n HideSection(Verification)|\nCallAPI(Type(GET)|Route(master/)|Success(SetVar(masters))|Error(SetErr(Response.err)))";
 // const jsonObject = actionJson(customString);
