@@ -91,6 +91,13 @@ Handlebars.registerHelper("create", function () {
 
 })
 
+Handlebars.registerHelper('ifIn', function(elem, list, options) {
+    if(list.indexOf(elem) > -1) {
+        return options.fn(this);
+    }
+    return options.inverse(this);
+});
+
 const templateCreator = (data, file, out, path) => {
   const templateContent = fs.readFileSync(file, "utf-8")
   const template = Handlebars.compile(templateContent)
