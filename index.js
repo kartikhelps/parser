@@ -17,6 +17,16 @@ const createFile = async (obj, name, path) => {
   }
 }
 
+Handlebars.registerHelper('ifIn', function(elem, list, options) {
+  const imageObject = list.find(obj => obj.fieldType === 'image');
+  console.log(imageObject,"jdfguishgiusfhg");
+  if (imageObject) {
+    return options.fn(imageObject.label);
+  } else {
+    return options.inverse(this);
+  }
+});
+
 Handlebars.registerHelper("concat", function () {
   arguments = [...arguments].slice(0, -1)
 
@@ -109,7 +119,7 @@ const main = async () => {
     const executeReactCommands = require("./reactCommands")
     executeReactCommands(sheetData,templateCreator)
   } else if (selectedConfig === "ionic") {
-    console.log("i")
+
      await jsonData("1SYD1Arng7eWa8BD2NOqFbfNsrhTT6NDioSE47W1ZqcM")
   const sheetData = require("./data.json")
     const executeIonicCommands = require("./ionicCommands")

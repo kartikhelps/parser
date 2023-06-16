@@ -39,6 +39,10 @@ function {{name}}({ setSection, vars }) {
           <{{@root.name}}Form vars={vars} setSection={setSection} />
            {{create fields "./templates/ionic/form.hbs" (concat @root.path "/") (concat @root.name "Form.tsx") @root.name}}
           {{/case}}
+          {{#case "banner"}}
+          <{{@root.name}}Banner vars={vars} setSection={setSection} />
+           {{create fields "./templates/ionic/banner.hbs" (concat @root.path "/") (concat @root.name "Banner.tsx") @root.name}}
+          {{/case}}
         {{/switch}}
         {{/each}}
       </IonContent>

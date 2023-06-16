@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 
-function Banner({ setSection, vars }) {
+function aboutbanner({ setSection, vars }) {
   const history = useHistory();
   const [toastOpen, setToastOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
@@ -19,9 +19,11 @@ function Banner({ setSection, vars }) {
           duration={3000}
           onDidDismiss={() => setToastOpen(false)}
         />
+          <aboutbannerBanner vars={vars} setSection={setSection} />
+           
       </IonContent>
     </>
   );
 }
 
-export default Banner;
+export default aboutbanner;

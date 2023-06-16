@@ -4,7 +4,7 @@ import axios from 'axios';
 import { IonButton, IonContent, IonPage, IonToast } from "@ionic/react";
 import environment from "../../environment"
 
-import Banner from "./Banner";
+import homebanner from "./homebanner";
 import Content from "./Content";
 import Newsletter from "./Newsletter";
 
@@ -33,7 +33,7 @@ const About = () => {
         />
         {isLoading && (
           <>
-            {section.BannerState && <Banner vars={vars} setSection={setSection} />}
+            {section.homebannerState && <homebanner vars={vars} setSection={setSection} />}
             
             {section.ContentState && <Content vars={vars} setSection={setSection} />}
             

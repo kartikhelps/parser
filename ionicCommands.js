@@ -55,7 +55,7 @@ console.log(error)
 // }
 
 
-    console.log("12")
+
 
 
 }

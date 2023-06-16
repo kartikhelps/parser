@@ -1,0 +1,57 @@
+import { IonButton, IonCheckbox, IonContent, IonGrid, IonText, IonToast } from "@ionic/react";
+import { useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+
+function {{name}}Banner({ setSection, vars }) {
+  const history = useHistory();
+  const [toastOpen, setToastOpen] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastColor, setToastColor] = useState("");
+
+
+  {{#ifIn "image" data}}
+  const backgroundImageStyle = {
+    backgroundImage: `url("/assets/imgs/{{this}}")`,
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    height: '500px'
+  };
+      {{else}}
+
+      {{/ifIn}}
+
+    
+  return (
+    <>
+      <IonToast
+        isOpen={toastOpen}
+        message={toastMessage}
+        color={toastColor}
+        duration={3000}
+        onDidDismiss={() => setToastOpen(false)}
+      />
+      
+      {{#ifIn "image" data}}
+      <div style={backgroundImageStyle} className="hero-image">
+      {{else}}
+      <div className="hero-image">
+      {{/ifIn}}
+      
+        <div className="hero-text">
+          {{#each data}}
+          {{log .}}
+          {{#ifeq fieldType "text"}}
+          <div>{{label}}</div>
+          {{/ifeq}}
+          {{#ifeq fieldType "button"}}
+          <button onClick={() => console.logo("gsdhifg")}>{{label}}</button>
+          {{/ifeq}}
+          {{/each}}
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default {{name}}Banner;

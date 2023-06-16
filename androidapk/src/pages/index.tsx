@@ -4,27 +4,16 @@ import axios from 'axios';
 import { IonButton, IonContent, IonPage, IonToast } from "@ionic/react";
 import environment from "../../environment"
 
-import Blog_Text from "./Blog_Text";
+import box from "./box";
+import  from "./";
 
-const Blog = () => {
+const  = () => {
   const history = useHistory();
 
   const [toast, setToast] = useState({ isOpen: false, message: "", color: "" });
 
   const [vars, setVars] = useState({});
   const [isLoading, setLoad] = useState(false);
-  const [section, setSection] = useState({ "NavbarState":true,"filterState":false,"footerState":true });
-
-
-
-  useEffect(() => {
-    axios.get(`${environment.VITE_API} master/`).then((res) => {
-      setLoad(true);
-    }).catch(err => {
-      setToast({ isOpen: true, message: err.response.data.error, color: "danger" });
-    });
-  }, []);
-
 
   return (
     <IonPage>
@@ -36,9 +25,9 @@ const Blog = () => {
           duration={6000}
           onDidDismiss={() => setToast({ isOpen: false, message: "", color: "" })}
         />
-        {isLoading && (
-          <>
-            {section.Blog_TextState && <Blog_Text vars={vars} setSection={setSection} />}
+            {section.boxState && <box vars={vars} setSection={setSection} />}
+            
+            {section.State && < vars={vars} setSection={setSection} />}
             
         </>
         )
@@ -48,4 +37,4 @@ const Blog = () => {
   );
 }
 
-export default Blog;
+export default ;

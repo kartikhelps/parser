@@ -5,14 +5,14 @@ const credentials = require("./pass.json")
 
 
 async function getRowsFromGoogleSheet(value) {
-  console.log(value,"8")
+
   // const SPREADSHEET_ID = "1qCwrCW8v6hDHPWuvwGsZrUgDrV41or7AQWsgWADCyoo"
   const SPREADSHEET_ID ="1mVzip6mAkCG_Smk4ddQyPJp6q9P1lc3VHi6DJK7QRzA"
   const doc = new GoogleSpreadsheet(SPREADSHEET_ID)
   await doc.useServiceAccountAuth(credentials)
   await doc.loadInfo()
   const sheet = doc.sheetsByIndex[1]
-  console.log(doc)
+
   return await sheet.getRows()
 }
 
