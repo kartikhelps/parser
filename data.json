@@ -1,1 +1,1150 @@
+<<<<<<< HEAD
 {"screens":[{"name":"Home","sections":[{"name":"Onload_Config","components":[{"type":"","fields":[{"name":"","fieldType":"","mandatory":false,"placeholder":"","regexValidation":"","mapField":"","regexMsg":"","masters":"","label":"","defaultValue":"","action":{"Actions":[{"step":1,"type":"ShowSection","fields":{"Navbar":true,"Header":true,"Banner":true,"Carousel":true,"Footer":true}},{"step":2,"type":"CallAPI","fields":{"type":"get","route":"master/"},"Success":[{"step":1,"type":"setVar","fields":{"vars":"masters"}}],"Error":[{"step":1,"type":"SetErr","fields":{"error":"response.err"}}]}]}}]}]},{"name":"Header","components":[{"type":"Nav","fields":[{"name":"title","fieldType":"TextBox","mandatory":true,"placeholder":"","regexValidation":"","mapField":"","regexMsg":"","masters":"","label":"BuilderFlow.com","defaultValue":"","action":""},{"name":"about","fieldType":"TextBox","mandatory":true,"mapField":"","label":"About","action":""},{"name":"blog","fieldType":"TextBox","mandatory":true,"mapField":"","label":"Blog","action":""}]}]},{"name":"Banner","components":[{"type":"Banner","fields":[{"name":"bgImage","fieldType":"image","mandatory":true,"placeholder":"","regexValidation":"","mapField":"","regexMsg":"","masters":"","label":"b2.png","defaultValue":"","action":""},{"name":"Tagline","fieldType":"text","mandatory":false,"label":"Start Exploring Your Dream","action":""},{"name":"","fieldType":"text","mandatory":false,"label":"Builder Floor now","action":""},{"name":"location","fieldType":"DropDown","mandatory":false,"label":"Location","action":""},{"name":"price","fieldType":"Slider","mandatory":false,"mapField":"","label":"","action":""},{"name":"Search","fieldType":"Button","mandatory":false,"label":"Search","action":""},{"name":"text","fieldType":"TextBox","mandatory":false,"label":"Explore Top Properties","action":""},{"name":"text","fieldType":"TextBox","mandatory":false,"label":"We find the absolute best prices on plots & flats\r\n\r\n","action":""}]}]},{"name":"Carousel","components":[{"type":"DisplayCard","fields":[{"name":"Image","fieldType":"","mandatory":false,"placeholder":"","regexValidation":"","mapField":"","regexMsg":"","masters":"","label":"Image","defaultValue":"","action":{"Actions":[{"step":1,"type":"CallAPI","fields":{},"Success":[{"step":1,"type":"cards","fields":{"url":"Home"}},{"step":2,"type":"PassParam","fields":{"value":"Response.authToken"}}]}]}},{"name":"Ratings","fieldType":"Number","mandatory":false,"label":"rates","action":""},{"name":"heading","fieldType":"","mandatory":false,"label":"a","action":""},{"name":"location","fieldType":"","mandatory":false,"label":"","action":""}]}]},{"name":"Footer","components":[{"type":"Button","fields":[{"name":"button","fieldType":"","mandatory":false,"label":"Load More Destinations","action":""},{"name":"Image","fieldType":"","mandatory":false,"label":"logo","action":""},{"name":"sociallink","fieldType":"","mandatory":false,"label":"href","action":""},{"name":"sociallink","fieldType":"","mandatory":false,"label":"href","action":""}]}]}]},{"name":"Results","sections":[{"name":"Onload_Config","components":[{"type":"","fields":[{"name":"","fieldType":"","mandatory":false,"placeholder":"","regexValidation":"","mapField":"","regexMsg":"","masters":"","label":"","defaultValue":"","action":{"Actions":[{"step":1,"type":"ShowSection","fields":{"Navbar":true,"Header":true,"Banner":true,"ListView":true,"Footer":true}},{"step":2,"type":"CallApi","fields":{"type":"get","route":"properties/list"},"Success":[{"step":1,"type":"setVar","fields":{"vars":"masters"}}],"Error":[{"step":1,"type":"SetErr","fields":{"error":"response.err"}}]}]}}]}]},{"name":"Filter","components":[{"type":"DropDown","fields":[{"name":"property_price","fieldType":"DropDown","mandatory":false,"label":"Price","action":""},{"name":"property_size","fieldType":"DropDown","mandatory":false,"label":"Size","action":""},{"name":"property_loc","fieldType":"DropDown","mandatory":false,"label":"Location","action":""},{"name":"property_facing","fieldType":"DropDown","mandatory":false,"label":"Facing","action":""},{"name":"property_pos","fieldType":"DropDown","mandatory":false,"label":"Postition","action":""},{"name":"property_bhk","fieldType":"DropDown","mandatory":false,"label":"Accomodation","action":""},{"name":"property_floor","fieldType":"DropDown","mandatory":false,"label":"Floor","action":""},{"name":"property_filter","fieldType":"DropDown","mandatory":false,"label":"Filter","action":""}]}]},{"name":"Card","components":[{"type":"CardInfo","fields":[{"name":"property_info","fieldType":"","mandatory":false,"label":"Info ","action":""}]}]},{"name":"Navigation","components":[{"type":"Button","fields":[{"name":"Button","fieldType":"","mandatory":false,"label":"Previous","action":""},{"name":"Button","fieldType":"","mandatory":false,"label":"Next","action":""}]}]}]},{"name":"About","sections":[{"name":"Onload_Config","components":[{"type":"","fields":[{"name":"","fieldType":"","mandatory":false,"placeholder":"","regexValidation":"","mapField":"","regexMsg":"","masters":"","label":"","defaultValue":"","action":{"Actions":[{"step":1,"type":"ShowSection","fields":{"Navbar":true,"footer":true,"filter":false}},{"step":2,"type":"callApi","fields":{"type":"get","route":""}}]}}]}]},{"name":"homebanner","components":[{"type":"banner","fields":[{"name":"","fieldType":"image","mandatory":false,"label":"b1.png","action":""},{"name":"","fieldType":"text","mandatory":false,"label":"Start Exploring Your Dream","action":""},{"name":"","fieldType":"text","mandatory":false,"label":"Builder Floor now","action":""}]}]},{"name":"Content","components":[{"type":"Textbox","fields":[{"name":"About_us","fieldType":"","mandatory":false,"label":"We Understand the transparency in the real e","action":""},{"name":"Contact_us","fieldType":"Button","mandatory":false,"label":"Contact Us","action":""}]}]},{"name":"Newsletter","components":[{"type":"Form","fields":[{"name":"Form","fieldType":"","mandatory":false,"label":"Subscribe Mail","action":""},{"name":"Button","fieldType":"","mandatory":false,"placeholder":"","regexValidation":"","mapField":"","masters":"","label":"Subscribe Mail","regexMsg":"","defaultValue":"","action":{"Actions":[{"step":1,"type":"callApi","fields":{"button":true,"onSuccess":true}},{"step":2,"type":"onSuccess","fields":{"type":"get","route":""}}]}}]}]}]},{"name":"Blog","sections":[{"name":"Onload_Config","components":[{"type":"","fields":[{"name":"","fieldType":"","mandatory":false,"placeholder":"","regexValidation":"","mapField":"","regexMsg":"","masters":"","label":"","defaultValue":"","action":{"Actions":[{"step":1,"type":"ShowSection","fields":{"Navbar":true,"filter":false,"footer":true}},{"step":2,"type":"CallAPI","fields":{"type":"get","route":"master/"}}]}}]}]},{"name":"Blog_Text","components":[{"type":"Blog_Text","fields":[{"mandatory":false,"action":""}]}]}]},{"name":"Properties","sections":[{"name":"Onload_Config","components":[{"type":"","fields":[{"name":"","fieldType":"","mandatory":false,"placeholder":"","regexValidation":"","mapField":"","regexMsg":"","masters":"","label":"","defaultValue":"","action":{"Actions":[{"step":1,"type":"ShowSection","fields":{"Navbar":true,"banner":false,"footer":true}},{"step":2,"type":"CallAPI","fields":{"type":"get","route":"master/"},"Success":[{"step":1,"type":"setVar","fields":{"vars":"masters"}}],"Error":[{"step":1,"type":"SetErr","fields":{"error":"response.err"}}]}]}}]}]},{"name":"Property_table","components":[{"type":"ListView","fields":[{"name":"Property_id","fieldType":"","mandatory":false,"label":"id","action":""},{"name":"city","fieldType":"","mandatory":false,"label":"city","action":""},{"name":"location","fieldType":"","mandatory":false,"label":"Location","action":""},{"name":"plot_no","fieldType":"","mandatory":false,"label":"Plot number","action":""},{"name":"size","fieldType":"","mandatory":false,"label":"Size","action":""},{"name":"floor","fieldType":"","mandatory":false,"label":"Floor","action":""},{"name":"accomodation","fieldType":"","mandatory":false,"label":"Accomodation","action":""},{"name":"park","fieldType":"","mandatory":false,"label":"Park","action":""},{"name":"corner","fieldType":"","mandatory":false,"label":"Corner","action":""},{"name":"possesion","fieldType":"","mandatory":false,"label":"Possesion","action":""},{"name":"builder_name","fieldType":"","mandatory":false,"label":"Builder Name","action":""},{"name":"contact","fieldType":"","mandatory":false,"label":"Contact","action":""},{"name":"update_date","fieldType":"","mandatory":false,"label":"Updated Date","action":""}]}]}]}]}
+=======
+{
+  "screens": [
+    {
+      "name": "Login",
+      "sections": [
+        {
+          "name": "Onload_Config",
+          "components": [
+            {
+              "type": "",
+              "fields": [
+                {
+                  "name": "",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "placeholder": "",
+                  "regexValidation": "",
+                  "mapField": "",
+                  "regexMsg": "",
+                  "masters": "",
+                  "label": "",
+                  "defaultValue": "",
+                  "action": {
+                    "Actions": [
+                      {
+                        "step": 1,
+                        "type": "ShowSection",
+                        "fields": {
+                          "Signin": true,
+                          "Signup": false,
+                          "Verification": false
+                        }
+                      },
+                      {
+                        "step": 2,
+                        "type": "CallAPI",
+                        "fields": { "type": "get", "route": "master/" },
+                        "Success": [
+                          {
+                            "step": 1,
+                            "type": "setVar",
+                            "fields": { "vars": "masters" }
+                          }
+                        ],
+                        "Error": [
+                          {
+                            "step": 1,
+                            "type": "SetErr",
+                            "fields": { "error": "response.err" }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Signin",
+          "components": [
+            {
+              "type": "Form",
+              "fields": [
+                {
+                  "name": "email",
+                  "fieldType": "Textbox",
+                  "mandatory": true,
+                  "placeholder": "Enter UserName",
+                  "regexValidation": "Regex.email",
+                  "mapField": "Users.email",
+                  "regexMsg": "Format not Correct",
+                  "label": "Email",
+                  "action": ""
+                },
+                {
+                  "name": "password",
+                  "fieldType": "Password",
+                  "mandatory": true,
+                  "placeholder": "Enter Password",
+                  "regexValidation": "Regex.password",
+                  "mapField": "Users.Password",
+                  "label": "Password",
+                  "regexMsg": "Should have at least 5 characters with 1 number",
+                  "action": ""
+                },
+                {
+                  "name": "Login",
+                  "fieldType": "Button",
+                  "mandatory": false,
+                  "placeholder": "",
+                  "regexValidation": "",
+                  "mapField": "",
+                  "masters": "",
+                  "label": "Login",
+                  "regexMsg": "",
+                  "defaultValue": "",
+                  "action": {
+                    "Actions": [
+                      {
+                        "step": 1,
+                        "type": "CallAPI",
+                        "fields": { "type": "post", "route": "users/login" },
+                        "Success": [
+                          {
+                            "step": 1,
+                            "type": "Redirect",
+                            "fields": { "url": "Home" }
+                          },
+                          {
+                            "step": 2,
+                            "type": "PassParam",
+                            "fields": { "value": "Response.authToken" }
+                          }
+                        ],
+                        "Error": [
+                          {
+                            "step": 1,
+                            "type": "SetErr",
+                            "fields": { "error": "Response.err" }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Signup",
+          "components": [
+            {
+              "type": "Form",
+              "fields": [
+                {
+                  "name": "country",
+                  "fieldType": "Dropdown",
+                  "mandatory": true,
+                  "placeholder": " ",
+                  "regexValidation": "",
+                  "mapField": "Users.Country",
+                  "regexMsg": "",
+                  "masters": "masters.country",
+                  "label": "Country",
+                  "action": ""
+                },
+                {
+                  "name": "email",
+                  "fieldType": "Textbox",
+                  "mandatory": true,
+                  "placeholder": "Enter UserName",
+                  "regexValidation": "Regex.email",
+                  "mapField": "Users.email",
+                  "label": "Email",
+                  "regexMsg": "Format not Correct",
+                  "action": ""
+                },
+                {
+                  "name": "password",
+                  "fieldType": "Password",
+                  "mandatory": true,
+                  "placeholder": "Enter Password",
+                  "regexValidation": "Regex.password",
+                  "mapField": "Users.Password",
+                  "label": "Password",
+                  "regexMsg": "Should have at least 5 characters with 1 number",
+                  "action": ""
+                },
+                {
+                  "name": "confirmPassword",
+                  "fieldType": "Password",
+                  "mandatory": true,
+                  "placeholder": "Enter Password",
+                  "regexValidation": "Field.eq(password)",
+                  "mapField": "",
+                  "label": "Confirm Password",
+                  "regexMsg": "Same as Password",
+                  "action": ""
+                },
+                {
+                  "name": "Submit",
+                  "fieldType": "Button",
+                  "mandatory": false,
+                  "placeholder": "",
+                  "regexValidation": "",
+                  "mapField": "",
+                  "masters": "",
+                  "label": "Submit",
+                  "regexMsg": "",
+                  "defaultValue": "",
+                  "action": {
+                    "Actions": [
+                      {
+                        "step": 1,
+                        "type": "CallAPI",
+                        "fields": { "type": "post", "route": "users/" },
+                        "Success": [
+                          {
+                            "step": 1,
+                            "type": "ShowSection",
+                            "fields": {
+                              "Verification": true,
+                              "Signin": false,
+                              "Signup": false
+                            }
+                          }
+                        ],
+                        "Error": [
+                          {
+                            "step": 1,
+                            "type": "setErr",
+                            "fields": { "error": "Response.err" }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Verification",
+          "components": [
+            {
+              "type": "Form",
+              "fields": [
+                {
+                  "name": "verificationCode",
+                  "fieldType": "Textbox",
+                  "mandatory": true,
+                  "mapField": "Users.verificationCode",
+                  "label": "Verification Code",
+                  "action": ""
+                },
+                {
+                  "name": "Submit",
+                  "fieldType": "Button",
+                  "mandatory": true,
+                  "placeholder": "",
+                  "regexValidation": "",
+                  "mapField": "",
+                  "masters": "",
+                  "label": "Submit",
+                  "regexMsg": "",
+                  "defaultValue": "",
+                  "action": {
+                    "Actions": [
+                      {
+                        "step": 1,
+                        "type": "CallAPI",
+                        "fields": { "type": "post", "route": "users/otp" },
+                        "Success": [
+                          {
+                            "step": 1,
+                            "type": "Redirect",
+                            "fields": { "url": "Home" }
+                          },
+                          {
+                            "step": 2,
+                            "type": "PassParam",
+                            "fields": { "value": "Response.authToken" }
+                          }
+                        ],
+                        "Error": [
+                          {
+                            "step": 1,
+                            "type": "setErr",
+                            "fields": { "Error": "ResponseErr" }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Header",
+          "components": [
+            {
+              "type": "Nav",
+              "fields": [
+                {
+                  "name": "Signin",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "placeholder": "",
+                  "regexValidation": "",
+                  "mapField": "",
+                  "regexMsg": "",
+                  "masters": "",
+                  "label": "",
+                  "defaultValue": "",
+                  "action": {
+                    "Actions": [
+                      {
+                        "step": 1,
+                        "type": "ShowSection",
+                        "fields": {
+                          "Signin": true,
+                          "Verification": false,
+                          "Signup": false
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "Signup",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "placeholder": "",
+                  "regexValidation": "",
+                  "mapField": "",
+                  "masters": "",
+                  "label": "",
+                  "regexMsg": "",
+                  "defaultValue": "",
+                  "action": {
+                    "Actions": [
+                      {
+                        "step": 1,
+                        "type": "ShowSection",
+                        "fields": {
+                          "Signin": false,
+                          "Verification": false,
+                          "Signup": true
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Home",
+      "sections": [
+        {
+          "name": "Onload_Config",
+          "components": [
+            {
+              "type": "",
+              "fields": [
+                {
+                  "name": "",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "placeholder": "",
+                  "regexValidation": "",
+                  "mapField": "",
+                  "regexMsg": "",
+                  "masters": "",
+                  "label": "",
+                  "defaultValue": "",
+                  "action": {
+                    "Actions": [
+                      {
+                        "step": 1,
+                        "type": "ShowSection",
+                        "fields": {
+                          "Navbar": true,
+                          "Header": true,
+                          "Banner": true,
+                          "Carousel": true,
+                          "Footer": true
+                        }
+                      },
+                      {
+                        "step": 2,
+                        "type": "CallAPI",
+                        "fields": { "type": "get", "route": "master/" },
+                        "Success": [
+                          {
+                            "step": 1,
+                            "type": "setVar",
+                            "fields": { "vars": "masters" }
+                          }
+                        ],
+                        "Error": [
+                          {
+                            "step": 1,
+                            "type": "SetErr",
+                            "fields": { "error": "response.err" }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Header",
+          "components": [
+            {
+              "type": "Nav",
+              "fields": [
+                {
+                  "name": "title",
+                  "fieldType": "TextBox",
+                  "mandatory": true,
+                  "placeholder": "",
+                  "regexValidation": "",
+                  "mapField": "",
+                  "regexMsg": "",
+                  "masters": "",
+                  "label": "BuilderFlow.com",
+                  "defaultValue": "",
+                  "action": ""
+                },
+                {
+                  "name": "about",
+                  "fieldType": "TextBox",
+                  "mandatory": true,
+                  "mapField": "",
+                  "label": "About",
+                  "action": ""
+                },
+                {
+                  "name": "blog",
+                  "fieldType": "TextBox",
+                  "mandatory": true,
+                  "mapField": "",
+                  "label": "Blog",
+                  "action": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Banner",
+          "components": [
+            {
+              "type": "Image",
+              "fields": [
+                {
+                  "name": "bgImage",
+                  "fieldType": "",
+                  "mandatory": true,
+                  "placeholder": "",
+                  "regexValidation": "",
+                  "mapField": "",
+                  "regexMsg": "",
+                  "masters": "",
+                  "label": "bg image",
+                  "defaultValue": "",
+                  "action": ""
+                },
+                {
+                  "name": "Tagline",
+                  "fieldType": "TextBox",
+                  "mandatory": false,
+                  "label": "Search Your Next Property\r\nfrom our Website",
+                  "action": ""
+                },
+                {
+                  "name": "location",
+                  "fieldType": "DropDown",
+                  "mandatory": false,
+                  "label": "Location",
+                  "action": ""
+                },
+                {
+                  "name": "price",
+                  "fieldType": "Slider",
+                  "mandatory": false,
+                  "mapField": "",
+                  "label": "",
+                  "action": ""
+                },
+                {
+                  "name": "Search",
+                  "fieldType": "Button",
+                  "mandatory": false,
+                  "label": "Search",
+                  "action": ""
+                },
+                {
+                  "name": "text",
+                  "fieldType": "TextBox",
+                  "mandatory": false,
+                  "label": "Explore Top Properties",
+                  "action": ""
+                },
+                {
+                  "name": "text",
+                  "fieldType": "TextBox",
+                  "mandatory": false,
+                  "label": "We find the absolute best prices on plots & flats\r\n\r\n",
+                  "action": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Carousel",
+          "components": [
+            {
+              "type": "DisplayCard",
+              "fields": [
+                {
+                  "name": "Image",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "placeholder": "",
+                  "regexValidation": "",
+                  "mapField": "",
+                  "regexMsg": "",
+                  "masters": "",
+                  "label": "Image",
+                  "defaultValue": "",
+                  "action": {
+                    "Actions": [
+                      {
+                        "step": 1,
+                        "type": "CallAPI",
+                        "fields": {},
+                        "Success": [
+                          {
+                            "step": 1,
+                            "type": "cards",
+                            "fields": { "url": "Home" }
+                          },
+                          {
+                            "step": 2,
+                            "type": "PassParam",
+                            "fields": { "value": "Response.authToken" }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "Ratings",
+                  "fieldType": "Number",
+                  "mandatory": false,
+                  "label": "rates",
+                  "action": ""
+                },
+                {
+                  "name": "heading",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "label": "",
+                  "action": ""
+                },
+                {
+                  "name": "location",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "label": "",
+                  "action": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Footer",
+          "components": [
+            {
+              "type": "Button",
+              "fields": [
+                {
+                  "name": "button",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "label": "Load More Destinations",
+                  "action": ""
+                },
+                {
+                  "name": "Image",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "label": "logo",
+                  "action": ""
+                },
+                {
+                  "name": "sociallink",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "label": "href",
+                  "action": ""
+                },
+                {
+                  "name": "sociallink",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "label": "href",
+                  "action": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Results",
+      "sections": [
+        {
+          "name": "Onload_Config",
+          "components": [
+            {
+              "type": "",
+              "fields": [
+                {
+                  "name": "",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "placeholder": "",
+                  "regexValidation": "",
+                  "mapField": "",
+                  "regexMsg": "",
+                  "masters": "",
+                  "label": "",
+                  "defaultValue": "",
+                  "action": {
+                    "Actions": [
+                      {
+                        "step": 1,
+                        "type": "ShowSection",
+                        "fields": {
+                          "Navbar": true,
+                          "Header": true,
+                          "Banner": true,
+                          "ListView": true,
+                          "Footer": true
+                        }
+                      },
+                      {
+                        "step": 2,
+                        "type": "CallApi",
+                        "fields": { "type": "get", "route": "properties/list" },
+                        "Success": [
+                          {
+                            "step": 1,
+                            "type": "setVar",
+                            "fields": { "vars": "masters" }
+                          }
+                        ],
+                        "Error": [
+                          {
+                            "step": 1,
+                            "type": "SetErr",
+                            "fields": { "error": "response.err" }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Filter",
+          "components": [
+            {
+              "type": "DropDown",
+              "fields": [
+                {
+                  "name": "property_price",
+                  "fieldType": "DropDown",
+                  "mandatory": false,
+                  "label": "Price",
+                  "action": ""
+                },
+                {
+                  "name": "property_size",
+                  "fieldType": "DropDown",
+                  "mandatory": false,
+                  "label": "Size",
+                  "action": ""
+                },
+                {
+                  "name": "property_loc",
+                  "fieldType": "DropDown",
+                  "mandatory": false,
+                  "label": "Location",
+                  "action": ""
+                },
+                {
+                  "name": "property_facing",
+                  "fieldType": "DropDown",
+                  "mandatory": false,
+                  "label": "Facing",
+                  "action": ""
+                },
+                {
+                  "name": "property_pos",
+                  "fieldType": "DropDown",
+                  "mandatory": false,
+                  "label": "Postition",
+                  "action": ""
+                },
+                {
+                  "name": "property_bhk",
+                  "fieldType": "DropDown",
+                  "mandatory": false,
+                  "label": "Accomodation",
+                  "action": ""
+                },
+                {
+                  "name": "property_floor",
+                  "fieldType": "DropDown",
+                  "mandatory": false,
+                  "label": "Floor",
+                  "action": ""
+                },
+                {
+                  "name": "property_filter",
+                  "fieldType": "DropDown",
+                  "mandatory": false,
+                  "label": "Filter",
+                  "action": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Card",
+          "components": [
+            {
+              "type": "CardInfo",
+              "fields": [
+                {
+                  "name": "property_info",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "label": "Info ",
+                  "action": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Navigation",
+          "components": [
+            {
+              "type": "Button",
+              "fields": [
+                {
+                  "name": "Button",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "label": "Previous",
+                  "action": ""
+                },
+                {
+                  "name": "Button",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "label": "Next",
+                  "action": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "About",
+      "sections": [
+        {
+          "name": "Onload_Config",
+          "components": [
+            {
+              "type": "",
+              "fields": [
+                {
+                  "name": "",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "placeholder": "",
+                  "regexValidation": "",
+                  "mapField": "",
+                  "regexMsg": "",
+                  "masters": "",
+                  "label": "",
+                  "defaultValue": "",
+                  "action": {
+                    "Actions": [
+                      {
+                        "step": 1,
+                        "type": "ShowSection",
+                        "fields": {
+                          "Navbar": true,
+                          "footer": true,
+                          "filter": false
+                        }
+                      },
+                      {
+                        "step": 2,
+                        "type": "callApi",
+                        "fields": { "type": "get", "route": "" }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Banner",
+          "components": [
+            {
+              "type": "Image",
+              "fields": [
+                {
+                  "name": "Image",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "label": "Image",
+                  "action": ""
+                },
+                {
+                  "name": "BgImage",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "label": "Image",
+                  "action": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Content",
+          "components": [
+            {
+              "type": "Textbox",
+              "fields": [
+                {
+                  "name": "About_us",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "label": "Find Your Builder Floor Today",
+                  "action": ""
+                },
+                {
+                  "name": "About_us",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "label": "We Understand the transparency in the real e",
+                  "action": ""
+                },
+                {
+                  "name": "Contact_us",
+                  "fieldType": "Button",
+                  "mandatory": false,
+                  "label": "Contact Us",
+                  "action": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Newsletter",
+          "components": [
+            {
+              "type": "Form",
+              "fields": [
+                {
+                  "name": "Form",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "label": "Subscribe Mail",
+                  "action": ""
+                },
+                {
+                  "name": "Button",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "placeholder": "",
+                  "regexValidation": "",
+                  "mapField": "",
+                  "masters": "",
+                  "label": "Subscribe Mail",
+                  "regexMsg": "",
+                  "defaultValue": "",
+                  "action": {
+                    "Actions": [
+                      {
+                        "step": 1,
+                        "type": "callApi",
+                        "fields": { "button": true, "onSuccess": true }
+                      },
+                      {
+                        "step": 2,
+                        "type": "onSuccess",
+                        "fields": { "type": "get", "route": "" }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Blog",
+      "sections": [
+        {
+          "name": "Onload_Config",
+          "components": [
+            {
+              "type": "",
+              "fields": [
+                {
+                  "name": "",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "placeholder": "",
+                  "regexValidation": "",
+                  "mapField": "",
+                  "regexMsg": "",
+                  "masters": "",
+                  "label": "",
+                  "defaultValue": "",
+                  "action": {
+                    "Actions": [
+                      {
+                        "step": 1,
+                        "type": "ShowSection",
+                        "fields": {
+                          "Navbar": true,
+                          "filter": false,
+                          "footer": true
+                        }
+                      },
+                      {
+                        "step": 2,
+                        "type": "CallAPI",
+                        "fields": { "type": "get", "route": "master/" }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Blog",
+          "components": [
+            { "type": "Blog", "fields": [{ "mandatory": false, "action": "" }] }
+          ]
+        },
+        {
+          "name": "Content",
+          "components": [
+            {
+              "type": "Textbox",
+              "fields": [{ "mandatory": false, "action": "" }]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Properties",
+      "sections": [
+        {
+          "name": "Onload_Config",
+          "components": [
+            {
+              "type": "",
+              "fields": [
+                {
+                  "name": "",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "placeholder": "",
+                  "regexValidation": "",
+                  "mapField": "",
+                  "regexMsg": "",
+                  "masters": "",
+                  "label": "",
+                  "defaultValue": "",
+                  "action": {
+                    "Actions": [
+                      {
+                        "step": 1,
+                        "type": "ShowSection",
+                        "fields": {
+                          "Navbar": true,
+                          "banner": false,
+                          "footer": true
+                        }
+                      },
+                      {
+                        "step": 2,
+                        "type": "CallAPI",
+                        "fields": { "type": "get", "route": "master/" },
+                        "Success": [
+                          {
+                            "step": 1,
+                            "type": "setVar",
+                            "fields": { "vars": "masters" }
+                          }
+                        ],
+                        "Error": [
+                          {
+                            "step": 1,
+                            "type": "SetErr",
+                            "fields": { "error": "response.err" }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Property_table",
+          "components": [
+            {
+              "type": "ListView",
+              "fields": [
+                {
+                  "name": "Property_id",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "label": "id",
+                  "action": ""
+                },
+                {
+                  "name": "city",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "label": "city",
+                  "action": ""
+                },
+                {
+                  "name": "location",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "label": "Location",
+                  "action": ""
+                },
+                {
+                  "name": "plot_no",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "label": "Plot number",
+                  "action": ""
+                },
+                {
+                  "name": "size",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "label": "Size",
+                  "action": ""
+                },
+                {
+                  "name": "floor",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "label": "Floor",
+                  "action": ""
+                },
+                {
+                  "name": "accomodation",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "label": "Accomodation",
+                  "action": ""
+                },
+                {
+                  "name": "park",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "label": "Park",
+                  "action": ""
+                },
+                {
+                  "name": "corner",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "label": "Corner",
+                  "action": ""
+                },
+                {
+                  "name": "possesion",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "label": "Possesion",
+                  "action": ""
+                },
+                {
+                  "name": "builder_name",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "label": "Builder Name",
+                  "action": ""
+                },
+                {
+                  "name": "contact",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "label": "Contact",
+                  "action": ""
+                },
+                {
+                  "name": "update_date",
+                  "fieldType": "",
+                  "mandatory": false,
+                  "label": "Updated Date",
+                  "action": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+>>>>>>> d04be66c910450a1080eb23f6296225203b058f6
