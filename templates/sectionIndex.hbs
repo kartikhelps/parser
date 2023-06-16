@@ -46,7 +46,11 @@ function {{name}}({setSection,vars}) {
      
      {{#case "DisplayCard"}}
       <{{@root.name}}DisplayCard vars={vars} setSection={setSection}/>
-      {{create fields "./templates/displayCard.hbs" (concat @root.path "/") (concat @root.name "displayCard.jsx") @root.name}}
+      {{create fields "./templates/displayCard.hbs" (concat @root.path "/") (concat @root.name "DisplayCard.jsx") @root.name}}
+    {{/case}} 
+    {{#case "Banner"}}
+      <{{@root.name}}DisplayCard vars={vars} setSection={setSection}/>
+      {{create fields "./templates/Banner.hbs" (concat @root.path "/") (concat @root.name "Banner.jsx") @root.name}}
     {{/case}} 
       {{/switch}}
        {{/each}}

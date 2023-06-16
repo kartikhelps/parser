@@ -1,0 +1,55 @@
+import { Button, Checkbox, Grid, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+
+function {{name}}Banner({ setSection, vars }) {
+  const history = useHistory();
+  const [toastOpen, setToastOpen] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastColor, setToastColor] = useState("");
+
+  {{#ifIn "image" data}}
+  const backgroundImageStyle = {
+    backgroundImage: `url("/assets/imgs/{{this}}")`,
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    height: '500px'
+  };
+  {{else}}
+  {{/ifIn}}
+
+  return (
+    <>
+      {/* Toast component */}
+      <Snackbar
+        open={toastOpen}
+        message={toastMessage}
+        autoHideDuration={3000}
+        onClose={() => setToastOpen(false)}
+      />
+
+      {{#ifIn "image" data}}
+      <div style={backgroundImageStyle} className="hero-image">
+      {{else}}
+      <div className="hero-image">
+      {{/ifIn}}
+        <div className="hero-text">
+          {{#each data}}
+          {{log .}}
+          {{#ifeq fieldType "text"}}
+          <Typography variant="body1">{{label}}</Typography>
+          {{/ifeq}}
+          {{#ifeq fieldType "button"}}
+          <Button onClick={() => console.log("gsdhifg")}>
+            {{label}}
+          </Button>
+          {{/ifeq}}
+          {{/each}}
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default {{name}}Banner;

@@ -1,0 +1,142 @@
+import { useState, useEffect } from "react";
+import {
+  Button,
+  Typography,
+  TableContainer,
+  Paper,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  Tooltip,
+  IconButton,
+  FormHelperText,
+} from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import axios from "axios";
+import { useContext } from "react";
+
+const {{name}}ListView = ({ type, data, setData }) => {
+  const [currentId, setCurrentId] = useState("");
+  const [fieldsName, setFieldsName] = useState([]);
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  useEffect(() => {
+    if (data) {
+      setFieldsName(getFieldNames(data));
+    }
+  }, [data]);
+
+  function handleDeleteStudent(id) {
+    setDelModal(true);
+    setModalType("delete");
+    setCurrentId(id);
+  }
+
+  function handleEditStudent(id) {
+    setModal(true);
+    setModalType("update");
+    setCurrentId(id);
+  }
+
+  function getFieldNames(obj) {
+    if (Array.isArray(obj) && obj.length > 0) {
+      const keys = Object.keys(obj[0]);
+      const fields = keys.filter((key) => !Array.isArray(obj[0][key]));
+      return fields;
+    } else {
+      const keys = Object.keys(obj);
+      const fields = keys.filter((key) => !Array.isArray(obj[key]));
+      return fields;
+    }
+  }
+
+  return (
+    <>
+      {data && data.length > 0 && (
+        <Button
+          onClick={() => setAddModal(true)}
+          variant="contained"
+          color="primary"
+        >
+          Add lead
+        </Button>
+      )}
+
+      {data && data.length > 0 && (
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow className="#">
+                {data.map((student) => (
+                  <TableCell align="center" className="lead-header">
+                    {student.label}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            {data.length > 0 ? (
+              <TableBody>
+                {data.map((student, i) => (
+                  <TableRow key={i} className="lead-table-contents">
+                    {fieldsName.map((field) => (
+                      <TableCell
+                        key={`${student._id}-${field}`}
+                        align="center"
+                      >
+                        {student[field]}
+                      </TableCell>
+                    ))}
+                    {type !== "img" && (
+                      <TableCell align="center">
+                        <Tooltip title="Edit">
+                          <IconButton
+                            onClick={() => handleEditStudent(student._id)}
+                          >
+                            <EditIcon />
+                          </IconButton>
+                        </Tooltip>
+                        <Tooltip title="Delete">
+                          <IconButton
+                            onClick={() => handleDeleteStudent(student._id)}
+                          >
+                            <DeleteIcon color="secondary" />
+                          </IconButton>
+                        </Tooltip>
+                      </TableCell>
+                    )}
+                  </TableRow>
+                ))}
+              </TableBody>
+            ) : (
+              <TableBody>
+                <TableRow>
+                  <TableCell
+                    align="center"
+                    colSpan={fieldsName.length + (type !== "img" ? 1 : 0)}
+                  >
+                    No data found
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            )}
+          </Table>
+        </TableContainer>
+      )}
+    </>
+  );
+};
+
+export default {{name}}ListView;

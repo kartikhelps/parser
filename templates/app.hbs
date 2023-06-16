@@ -1,0 +1,27 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { ToastContainer } from "react-toastify"
+
+import "react-toastify/dist/ReactToastify.css"
+
+ {{#each screens}}
+import {{name}} from "./pages/{{name}}"
+{{/each}}                 
+function App() {
+
+  return (
+    <>
+      <Router>
+        <Routes>
+           {{#each screens}}
+<Route path="/{{name}}" element={<{{name}} />} />
+{{create sections "./templates/pageIndex.hbs" (concat "./myapp/src/pages/" name "/") "index.jsx" name}}
+  {{/each}} 
+        </Routes>
+      </Router>
+    </>
+  )
+}
+
+export default App
+
+

@@ -17,6 +17,16 @@ const createFile = async (obj, name, path) => {
   }
 }
 
+Handlebars.registerHelper('ifIn', function(elem, list, options) {
+  const imageObject = list.find(obj => obj.fieldType === 'image');
+  console.log(imageObject,"jdfguishgiusfhg");
+  if (imageObject) {
+    return options.fn(imageObject.label);
+  } else {
+    return options.inverse(this);
+  }
+});
+
 Handlebars.registerHelper("concat", function () {
   arguments = [...arguments].slice(0, -1)
 
