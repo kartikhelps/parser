@@ -2,7 +2,7 @@ import { IonButton, IonCheckbox, IonContent, IonGrid, IonText, IonToast } from "
 import { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
-function aboutbannerBanner({ setSection, vars }) {
+function BannerBanner({ setSection, vars }) {
   const history = useHistory();
   const [toastOpen, setToastOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
@@ -25,16 +25,12 @@ function aboutbannerBanner({ setSection, vars }) {
       <div className="hero-image">
       
         <div className="hero-text">
-          
-          <div>Find Your Dream Builder Floor Today</div>
-          
-          <div>We understand the importance of</div>
-          
-          <button onClick={() => console.logo("gsdhifg")}>contact us</button>
+          <div>Start Exploring Your Dream</div>
+          <div>Builder Floor now</div>
         </div>
       </div>
     </>
   );
 }
 
-export default aboutbannerBanner;
+export default BannerBanner;

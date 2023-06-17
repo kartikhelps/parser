@@ -9,13 +9,7 @@ function homebannerBanner({ setSection, vars }) {
   const [toastColor, setToastColor] = useState("");
 
 
-  const backgroundImageStyle = {
-    backgroundImage: `url("/assets/imgs/b1.png")`,
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    height: '500px'
-  };
+
 
     
   return (
@@ -28,13 +22,10 @@ function homebannerBanner({ setSection, vars }) {
         onDidDismiss={() => setToastOpen(false)}
       />
       
-      <div style={backgroundImageStyle} className="hero-image">
+      <div className="hero-image">
       
         <div className="hero-text">
-          
-          
           <div>Start Exploring Your Dream</div>
-          
           <div>Builder Floor now</div>
         </div>
       </div>

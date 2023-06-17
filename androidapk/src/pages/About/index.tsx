@@ -6,7 +6,7 @@ import environment from "../../environment"
 
 import homebanner from "./homebanner";
 import Content from "./Content";
-import Newsletter from "./Newsletter";
+import footer from "./footer";
 
 const About = () => {
   const history = useHistory();
@@ -37,7 +37,7 @@ const About = () => {
             
             {section.ContentState && <Content vars={vars} setSection={setSection} />}
             
-            {section.NewsletterState && <Newsletter vars={vars} setSection={setSection} />}
+            {section.footerState && <footer vars={vars} setSection={setSection} />}
             
         </>
         )

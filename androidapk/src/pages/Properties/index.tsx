@@ -13,19 +13,6 @@ const Properties = () => {
 
   const [vars, setVars] = useState({});
   const [isLoading, setLoad] = useState(false);
-  const [section, setSection] = useState({ "NavbarState":true,"bannerState":false,"footerState":true });
-
-
-
-  useEffect(() => {
-    axios.get(`${environment.VITE_API} master/`).then((res) => {
-      setVars(res.data.data);
-      setLoad(true);
-    }).catch(err => {
-      setToast({ isOpen: true, message: err.response.data.error, color: "danger" });
-    });
-  }, []);
-
 
   return (
     <IonPage>
@@ -37,8 +24,6 @@ const Properties = () => {
           duration={6000}
           onDidDismiss={() => setToast({ isOpen: false, message: "", color: "" })}
         />
-        {isLoading && (
-          <>
             {section.Property_tableState && <Property_table vars={vars} setSection={setSection} />}
             
         </>

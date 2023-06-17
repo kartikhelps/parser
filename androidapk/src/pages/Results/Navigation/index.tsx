@@ -1,6 +1,10 @@
 import { IonButton, IonCheckbox, IonContent, IonGrid, IonText, IonToast } from "@ionic/react";
 import { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { IonIcon } from '@ionic/react';
+
+import {  } from 'ionicons/icons';
+
 
 
 function Navigation({ setSection, vars }) {

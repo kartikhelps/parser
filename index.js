@@ -2,6 +2,7 @@ const fs = require("fs")
 const Handlebars = require("handlebars")
 var sh = require("shelljs")
 const jsonData = require("./pass")
+const { json } = require("body-parser")
 const createFile = async (obj, name, path) => {
   try {
     if (path) {
@@ -19,7 +20,6 @@ const createFile = async (obj, name, path) => {
 
 Handlebars.registerHelper('ifIn', function(elem, list, options) {
   const imageObject = list.find(obj => obj.fieldType === 'image');
-  console.log(imageObject,"jdfguishgiusfhg");
   if (imageObject) {
     return options.fn(imageObject.label);
   } else {
@@ -93,6 +93,25 @@ Handlebars.registerHelper("ifnoteq", function (a, b, options) {
   return options.inverse(this)
 })
 
+
+Handlebars.registerHelper('getIconNames', function(items, options) {
+  var iconNames = [];
+  
+  items.forEach(function(item) {
+    if (item.fields) {
+      item.fields.forEach(function(field) {
+        if (field.fieldType === "LIconText" || field.fieldType === "RIconText") {
+          iconNames.push(field.name);
+        }
+      });
+    }
+  });
+
+  // Join the icon names with a comma and return the resulting string
+  return iconNames.join(', ');
+});
+
+
 Handlebars.registerHelper("create", function () {
   var arg = Array.prototype.slice.call(arguments, 0, arguments.length - 1)
   templateCreator({ data: arg[0], name: arg[4], path: arg[2] }, arg[1], arg[3], arg[2])
@@ -111,9 +130,9 @@ Handlebars.registerHelper('ifIn', function(elem, list, options) {
 const templateCreator = (data, file, out, path) => {
   const templateContent = fs.readFileSync(file, "utf-8")
   const template = Handlebars.compile(templateContent)
-  const reactFileContent = template(data)
+  const fileContent = template(data)
 
-  createFile(reactFileContent, out, path)
+  createFile(fileContent, out, path)
 }
 
 const main = async () => {

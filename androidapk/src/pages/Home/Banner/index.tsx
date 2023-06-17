@@ -1,6 +1,10 @@
 import { IonButton, IonCheckbox, IonContent, IonGrid, IonText, IonToast } from "@ionic/react";
 import { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { IonIcon } from '@ionic/react';
+
+import {  } from 'ionicons/icons';
+
 
 
 function Banner({ setSection, vars }) {
@@ -19,6 +23,8 @@ function Banner({ setSection, vars }) {
           duration={3000}
           onDidDismiss={() => setToastOpen(false)}
         />
+          <BannerBanner vars={vars} setSection={setSection} />
+           
       </IonContent>
     </>
   );

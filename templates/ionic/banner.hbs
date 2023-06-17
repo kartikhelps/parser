@@ -40,12 +40,11 @@ function {{name}}Banner({ setSection, vars }) {
       
         <div className="hero-text">
           {{#each data}}
-          {{log .}}
           {{#ifeq fieldType "text"}}
           <div>{{label}}</div>
           {{/ifeq}}
           {{#ifeq fieldType "button"}}
-          <button onClick={() => console.logo("gsdhifg")}>{{label}}</button>
+          <button onClick={() => console.log("gsdhifg")}>{{label}}</button>
           {{/ifeq}}
           {{/each}}
         </div>

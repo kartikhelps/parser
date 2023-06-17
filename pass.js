@@ -22,7 +22,6 @@ async function googleSheetToJSON(value) {
   const currentScreen = {}
 
   rows.forEach((row) => {
-    console.log(row,24)
     let currentScreen = output.screens.find((screen) => screen.name === row.Screen)
 
   if (!currentScreen) {

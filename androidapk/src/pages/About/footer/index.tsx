@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { IonIcon } from '@ionic/react';
 
-import {  } from 'ionicons/icons';
+import { home } from 'ionicons/icons';
 
 
 
-function Card({ setSection, vars }) {
+function footer({ setSection, vars }) {
   const history = useHistory();
   const [toastOpen, setToastOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
@@ -23,9 +23,28 @@ function Card({ setSection, vars }) {
           duration={3000}
           onDidDismiss={() => setToastOpen(false)}
         />
+          <div>
+            CONTACT US
+          </div>
+          <div>
+            The right move to choose your new home.
+          </div>
+          <div style={ {display: "flex",alignItems: "center"} }>
+            <IonIcon icon={ home } style={ { marginRight: '10px' } } />
+            <div className="content">Builder Floor</div>
+          </div>
+          <div>
+            C1069, SUSHANT LOK-1, GURGAON ( HARAYANA)
+          </div>
+          <div>
+            91 91118xxxx0
+          </div>
+          <div>
+            contact@BuilderFloor.com
+          </div>
       </IonContent>
     </>
   );
 }
 
-export default Card;
+export default footer;

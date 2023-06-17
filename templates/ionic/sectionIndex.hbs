@@ -1,6 +1,10 @@
 import { IonButton, IonCheckbox, IonContent, IonGrid, IonText, IonToast } from "@ionic/react";
 import { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { IonIcon } from '@ionic/react';
+
+import { {{getIconNames data}} } from 'ionicons/icons';
+
 
 {{#each data}}
 {{#switch type}}
@@ -39,9 +43,30 @@ function {{name}}({ setSection, vars }) {
           <{{@root.name}}Form vars={vars} setSection={setSection} />
            {{create fields "./templates/ionic/form.hbs" (concat @root.path "/") (concat @root.name "Form.tsx") @root.name}}
           {{/case}}
-          {{#case "banner"}}
+          {{#case "Banner"}}
           <{{@root.name}}Banner vars={vars} setSection={setSection} />
            {{create fields "./templates/ionic/banner.hbs" (concat @root.path "/") (concat @root.name "Banner.tsx") @root.name}}
+          {{/case}}
+          {{#case "Textbox"}}
+          {{#each fields}}
+          {{#ifeq "text" fieldType}}
+          <div>
+            {{label}}
+          </div>
+          {{/ifeq}}
+          {{#ifeq "LIconText" fieldType}}
+          <div style={ {display: "flex",alignItems: "center"} }>
+            <IonIcon icon={ {{name}} } style={ { marginRight: '10px' } } />
+            <div className="content">{{label}}</div>
+          </div>
+          {{/ifeq}}
+          {{#ifeq "RIconText" fieldType}}
+          <div style={ {display: "flex",alignItems: "center"} }>
+            <div className="content"> {{label}} </div>
+            <IonIcon icon={ {{name}} } style={ { marginLeft: '10px' } } />
+          </div>
+          {{/ifeq}}
+            {{/each}}
           {{/case}}
         {{/switch}}
         {{/each}}
