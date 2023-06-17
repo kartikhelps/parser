@@ -48,8 +48,8 @@ const Home = () => {
             
             {section.CarouselState && <Carousel vars={vars} setSection={setSection} />}
             
-            {section.FooterState && <Footer vars={vars} setSection={setSection} />}
-            
+          <Footer vars={vars} setSection={setSection} />
+          
         </>
         )
         }

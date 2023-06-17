@@ -5,7 +5,7 @@ import { IonButton, IonContent, IonPage, IonToast } from "@ionic/react";
 import environment from "../../environment"
 
 import Filter from "./Filter";
-import Card from "./Card";
+import CustomCard from "./CustomCard";
 import Navigation from "./Navigation";
 
 const Results = () => {
@@ -35,7 +35,7 @@ const Results = () => {
           <>
             {section.FilterState && <Filter vars={vars} setSection={setSection} />}
             
-            {section.CardState && <Card vars={vars} setSection={setSection} />}
+            {section.CustomCardState && <CustomCard vars={vars} setSection={setSection} />}
             
             {section.NavigationState && <Navigation vars={vars} setSection={setSection} />}
             

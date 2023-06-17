@@ -7,7 +7,7 @@ import { home } from 'ionicons/icons';
 
 
 
-function footer({ setSection, vars }) {
+function Footer({ setSection, vars }) {
   const history = useHistory();
   const [toastOpen, setToastOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
@@ -15,14 +15,7 @@ function footer({ setSection, vars }) {
 
   return (
     <>
-      <IonContent>
-        <IonToast
-          isOpen={toastOpen}
-          message={toastMessage}
-          color={toastColor}
-          duration={3000}
-          onDidDismiss={() => setToastOpen(false)}
-        />
+
           <div>
             CONTACT US
           </div>
@@ -42,9 +35,8 @@ function footer({ setSection, vars }) {
           <div>
             contact@BuilderFloor.com
           </div>
-      </IonContent>
     </>
   );
 }
 
-export default footer;
+export default Footer;

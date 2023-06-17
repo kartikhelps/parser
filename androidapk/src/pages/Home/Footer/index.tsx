@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { IonIcon } from '@ionic/react';
 
-import {  } from 'ionicons/icons';
+
 
 
 
@@ -15,15 +15,7 @@ function Footer({ setSection, vars }) {
 
   return (
     <>
-      <IonContent>
-        <IonToast
-          isOpen={toastOpen}
-          message={toastMessage}
-          color={toastColor}
-          duration={3000}
-          onDidDismiss={() => setToastOpen(false)}
-        />
-      </IonContent>
+
     </>
   );
 }

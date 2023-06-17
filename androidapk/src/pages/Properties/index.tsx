@@ -24,6 +24,8 @@ const Properties = () => {
           duration={6000}
           onDidDismiss={() => setToast({ isOpen: false, message: "", color: "" })}
         />
+        {isLoading && (
+          <>
             {section.Property_tableState && <Property_table vars={vars} setSection={setSection} />}
             
         </>

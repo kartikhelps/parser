@@ -2,7 +2,7 @@ import { IonButton, IonCheckbox, IonContent, IonGrid, IonText, IonToast } from "
 import { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
-function homebannerBanner({ setSection, vars }) {
+function BannerBanner({ setSection, vars }) {
   const history = useHistory();
   const [toastOpen, setToastOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
@@ -33,4 +33,4 @@ function homebannerBanner({ setSection, vars }) {
   );
 }
 
-export default homebannerBanner;
+export default BannerBanner;

@@ -4,9 +4,10 @@ import axios from 'axios';
 import { IonButton, IonContent, IonPage, IonToast } from "@ionic/react";
 import environment from "../../environment"
 
-import homebanner from "./homebanner";
+import Header from "./Header";
+import Banner from "./Banner";
 import Content from "./Content";
-import footer from "./footer";
+import Footer from "./Footer";
 
 const About = () => {
   const history = useHistory();
@@ -14,8 +15,8 @@ const About = () => {
   const [toast, setToast] = useState({ isOpen: false, message: "", color: "" });
 
   const [vars, setVars] = useState({});
-  const [isLoading, setLoad] = useState(false);
-  const [section, setSection] = useState({ "NavbarState":true,"footerState":true,"filterState":false });
+  const [isLoading, setLoad] = useState(true);
+  const [section, setSection] = useState({ "BannerState":true,"ContentState":true });
 
 
 
@@ -33,12 +34,14 @@ const About = () => {
         />
         {isLoading && (
           <>
-            {section.homebannerState && <homebanner vars={vars} setSection={setSection} />}
+            <Header vars={vars} setSection={setSection} />
+            
+            {section.BannerState && <Banner vars={vars} setSection={setSection} />}
             
             {section.ContentState && <Content vars={vars} setSection={setSection} />}
             
-            {section.footerState && <footer vars={vars} setSection={setSection} />}
-            
+          <Footer vars={vars} setSection={setSection} />
+          
         </>
         )
         }

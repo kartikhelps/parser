@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { IonIcon } from '@ionic/react';
 
-import {  } from 'ionicons/icons';
+
 
 
 
@@ -15,14 +15,7 @@ function Content({ setSection, vars }) {
 
   return (
     <>
-      <IonContent>
-        <IonToast
-          isOpen={toastOpen}
-          message={toastMessage}
-          color={toastColor}
-          duration={3000}
-          onDidDismiss={() => setToastOpen(false)}
-        />
+
           <div>
             About Us ?
           </div>
@@ -59,7 +52,6 @@ function Content({ setSection, vars }) {
           <div>
             Start Exploring Our Listings Today And Let Us Be Your Trusted Partner In Finding Your Dream Builder Floor In Gurgaon.
           </div>
-      </IonContent>
     </>
   );
 }

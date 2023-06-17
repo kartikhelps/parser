@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { IonIcon } from '@ionic/react';
 
-import {  } from 'ionicons/icons';
 
 
 
-function homebanner({ setSection, vars }) {
+
+function CustomCard({ setSection, vars }) {
   const history = useHistory();
   const [toastOpen, setToastOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
@@ -15,19 +15,9 @@ function homebanner({ setSection, vars }) {
 
   return (
     <>
-      <IonContent>
-        <IonToast
-          isOpen={toastOpen}
-          message={toastMessage}
-          color={toastColor}
-          duration={3000}
-          onDidDismiss={() => setToastOpen(false)}
-        />
-          <homebannerBanner vars={vars} setSection={setSection} />
-           
-      </IonContent>
+
     </>
   );
 }
 
-export default homebanner;
+export default CustomCard;
