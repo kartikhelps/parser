@@ -5,6 +5,7 @@ import { IonIcon } from '@ionic/react';
 
 
 
+
 import BannerBanner from "./BannerBanner";
 
 
@@ -14,9 +15,12 @@ function Banner({ setSection, vars }) {
   const [toastMessage, setToastMessage] = useState("");
   const [toastColor, setToastColor] = useState("");
 
+
+
   return (
     <>
 
+          
           <BannerBanner vars={vars} setSection={setSection} />
            
     </>

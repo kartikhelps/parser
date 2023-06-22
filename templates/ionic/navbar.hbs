@@ -1,80 +1,110 @@
-import React, { useState } from 'react';
-import { IonToolbar, IonButtons, IonButton, IonMenuButton, IonTitle, IonHeader, IonIcon, IonContent, IonAvatar, IonTooltip, IonMenu, IonList, IonItem, IonLabel, IonToast } from '@ionic/react';
-import { menuOutline, personOutline } from 'ionicons/icons';
+import React, { useState } from "react"
 import { useHistory } from 'react-router-dom';
+import { IonIcon } from '@ionic/react';
 
-const pages = [ {{#each data}} "{{name}}", {{/each}} ];
 
-function ResponsiveAppBar({ setSection, vars }) {
-  const [showMenu, setShowMenu] = useState(false);
-  const [toastOpen, setToastOpen] = useState(false);
-  const [toastMessage, setToastMessage] = useState("");
 
+
+const HamburgerMenuHeader = ({ menuItems, setSection }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const history = useHistory();
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
 
-  const handleToggleMenu = () => {
-    setShowMenu(!showMenu);
-  };
+  {{#each data}}
+  {{#ifnoteq "Title" fieldType}}
+  const  {{name}}Change=() =>{
 
-  const handleMenuItemClick = (page) => {
-    setShowMenu(false);
-    handleNavigation(page);
-  };
-
-  const handleNavigation = (page) => {
-    {{#each data}}
-    if (page === "{{name}}") {
       {{#each action.Actions}}
-      {{#ifeq type "ShowSection"}}
-      setSection((prev) => ({ ...prev, {{{objToString fields}}} }));
-      {{/ifeq}}
-      {{#ifeq type "Redirect"}}
-      history.push('/{{fields.url}}');
-      {{/ifeq}}
-      {{/each}}
-    }
-    {{/each}}
-  };
+
+{{#ifeq type "ShowSection"}}
+     setSection((prev)=>({...prev, {{{objToString fields}}} }))
+{{/ifeq}}
+{{#ifeq type "Redirect"}}
+    history.push('/{{fields.url}}')
+{{/ifeq}}
+{{/each}}
+  }
+  {{/ifnoteq}}
+{{/each}}
 
   return (
-    <>
-     <IonMenu side="start" contentId="main-content" isOpen={showMenu} onIonDidClose={() => setShowMenu(false)}>
-        <IonContent>
-          <IonList>
+   <header style={ {display: 'flex', justifyContent: 'space-between', alignItems: 'center'} }>
+      <button
+        onClick={handleMenuToggle}
+        style={ {
+          background: "none",
+          border: "none",
+          padding: "0",
+          cursor: "pointer",
+        } }
+      >
+        <span
+          className={isMenuOpen ? "menu-icon open" : "menu-icon"}
+          style={ {
+            display: "block",
+            width: "20px",
+            height: "2px",
+            margin: "4px 0",
+            transition: "transform 0.2s ease-in-out",
+            transformOrigin: "1px",
+          } }
+        ></span>
+        <span
+          className={isMenuOpen ? "menu-icon open" : "menu-icon"}
+          style={ {
+            display: "block",
+            width: "20px",
+            height: "2px",
+            margin: "4px 0",
+            transition: "transform 0.2s ease-in-out",
+            transformOrigin: "1px",
+          } }
+        ></span>
+        <span
+          className={isMenuOpen ? "menu-icon open" : "menu-icon"}
+          style={ {
+            display: "block",
+            width: "20px",
+            height: "2px",
+            margin: "4px 0",
+            transition: "transform 0.2s ease-in-out",
+            transformOrigin: "1px",
+          } }
+        ></span>
+      </button>
+
+
+      {{#ifin "Title" data}}
+      <div style={ {flexGrow: 1, textAlign: 'center'} }>
+        <h1>{{this}}</h1>
+      </div>
+      {{else}}
+{{/ifin}}
+
+      {isMenuOpen && (
+        <nav style={ { display: "block" } }>
+          <ul style={ { listStyle: "none", padding: "0", margin: "0" } }>
             {{#each data}}
-            <IonItem button onClick={() => handleMenuItemClick("{{name}}")}>
-              <IonLabel>{{name}}</IonLabel>
-            </IonItem>
-            {{/each}}
-
-          </IonList>
-        </IonContent>
-      </IonMenu>
-
-       <IonHeader>
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonMenuButton onClick={handleToggleMenu}>
-              <IonIcon icon={menuOutline} />
-            </IonMenuButton>
-          </IonButtons>
-          <IonTitle>LOGO</IonTitle>
-          <IonButtons slot="end">
-            <IonButton>
-              <IonIcon icon={personOutline} />
-            </IonButton>
-          </IonButtons>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent id="main-content">
-        {/* Rest of your content goes here */}
-      </IonContent>
-      <IonToast isOpen={toastOpen} message={toastMessage} duration={3000} onDidDismiss={() => setToastOpen(false)} />
-        </>
-
-
-   
-  );
+            {{#ifnoteq "Title" fieldType}}
+                <li
+                onClick= { {{name}}Change }
+              style={ {
+                padding: "10px",
+    
+                cursor: "pointer",
+              } }
+            >
+              {{name}}
+            </li>
+            {{/ifnoteq}}
+              {{/each}}
+          </ul>
+        </nav>
+      )}
+    </header>
+  )
 }
 
-export default ResponsiveAppBar;
+export default HamburgerMenuHeader

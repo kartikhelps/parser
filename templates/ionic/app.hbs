@@ -34,11 +34,18 @@ const App: React.FC = () => (
     <IonReactRouter>
         <IonRouterOutlet>
             {{#each screens}}
+            {{#ifeq name "Home"}}
+            <Route exact path="/">
+                <{{name}} />
+                {{create sections "./templates/ionic/pageIndex.hbs" (concat "./androidapk/src/pages/" name "/") "index.tsx" name}}
+            </Route>
+            {{/ifeq}}
+            {{#ifnoteq name "Home"}}
             <Route exact path="/{{name}}">
                 <{{name}} />
-                {{create sections "./templates/ionic/pageIndex.hbs" (concat "./androidapk/src/pages/" name "/") "index.tsx"
-                name}}
+                {{create sections "./templates/ionic/pageIndex.hbs" (concat "./androidapk/src/pages/" name "/") "index.tsx" name}}
             </Route>
+            {{/ifnoteq}}
             {{/each}}
         </IonRouterOutlet>
     </IonReactRouter>

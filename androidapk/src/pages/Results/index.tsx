@@ -19,8 +19,6 @@ const Results = () => {
 
 
 
-
-
   return (
     <IonPage>
       <IonContent>

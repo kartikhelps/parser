@@ -1,0 +1,116 @@
+import React from 'react'
+import {FiShare2} from "react-icons/fi"
+import {BsHeart} from "react-icons/bs"
+import {BiCurrentLocation} from "react-icons/bi"
+import { FaHome, FaSortAmountUp, FaSquare ,FaDirections} from 'react-icons/fa';
+
+const Customcardblding = ({vars,setSection}) => {
+  const [data,setData] = useState()
+  const [load,setLoad] = useState(false)
+  const [toast, setToast] = useState({ isOpen: false, message: "", color: "" });
+  
+  
+  {{#each data}}
+  {{#ifeq fieldType "onload"}}
+  {{#each action.Actions}}
+  
+  {{#ifeq type "CallAPI"}}
+  useEffect(() => {
+    axios.{{fields.type}}(`${import.meta.env.VITE_APP_API_URL}{{fields.route}}`).then((res) => {
+      {{#each Success}}
+      {{#ifeq type "setVar"}}
+      setData(res.data.data);
+      {{/ifeq}}
+      {{/each}}
+      setLoad(true);
+    }).catch(err => {
+      setToast({ isOpen: true, message: err.response.data.error, color: "danger" });
+    });
+  }, []);
+  {{/ifeq}}
+  
+  {{/each}}
+  {{/ifeq}}
+  {{/each}}
+ 
+ 
+  return (
+    {load && data.map(d => 
+      (
+    <div>
+        <div style={ {display:"flex" , flexDirection:"row" ,  gap:"10px"} }>
+            <div>
+              {{#each data}}
+                {{#ifeq fieldType "Title"}}
+                <h2>{ d.{{mapField}} }</h2>
+                {{/ifeq}}
+                {{#ifeq fieldType "Text"}}
+            
+                <h4>{ d.{{mapField}} }</h4>
+                {{/ifeq}}
+                {{/each}}
+            </div>
+            <div  style={ {display:"flex" , flexDirection:"row" ,  gap:"10px" , justifyContent:"center" ,alignItems:"center"} } >
+                <div>
+                     <FiShare2 size={30}/>
+                </div>
+                <div>
+                    <BsHeart size={30}/>
+                </div>
+            </div>
+        </div>
+
+
+        {{#each data}}
+        {{#ifeq fieldType "Image"}}
+        <div>
+            <img src={imageURL} alt='room' style={ { width: '100%', borderTopLeftRadius: '15px', borderTopRightRadius: '15px' } }  />
+        </div>
+
+        {{/ifeq}}
+        {{/each}}
+
+        <div style={ {display:"flex" , flexDirection:"row" , gap:"40px" ,margin:"10px"} } >
+          {{#each data}}
+      {{#ifeq fieldType "LIconText"}}
+      <div style={ {display:"flex" , flexDirection:"row", margin:"10px"} }>
+        <{{name}}  />
+        {  d.{{mapField}} } 
+    </div>
+      <div>
+        <{{name}} />
+        <span>{  d.{{mapField}} } </span>
+      </div>
+      {{/ifeq}}
+      {{#ifeq fieldType "RIconText"}}
+      <div>
+        <span>{  d.{{mapField}} } </span>
+        <{{name}} />
+      </div>
+      {{/ifeq}}
+      {{/each}}
+
+
+        </div>
+
+        <div style={ {display:"flex",flexDirection:"row", gap:"40px"} }>
+          {{#each data}}
+          {{#ifeq fieldType "buttontext"}}
+          <h4>{s.{{mapField}} }</4>
+          {{/ifeq}}
+          {{#ifeq fieldType "Button"}}
+          <button style={ { padding: '10px 20px', backgroundColor: 'blue', color: 'white', border: 'none', borderRadius: '5px' } }>
+            {d.{{mapField}} }
+          </button>
+          {{/ifeq}}
+          {{/each}}
+
+        </div>
+
+
+    </div>
+      )}
+  )
+}
+ 
+export default Customcardblding ;

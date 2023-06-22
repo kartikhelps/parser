@@ -4,7 +4,9 @@ import axios from 'axios';
 import { IonButton, IonContent, IonPage, IonToast } from "@ionic/react";
 import environment from "../../environment"
 
+import Slider from "./Slider";
 import Property_table from "./Property_table";
+import Footer from "./Footer";
 
 const Properties = () => {
   const history = useHistory();
@@ -13,6 +15,17 @@ const Properties = () => {
 
   const [vars, setVars] = useState({});
   const [isLoading, setLoad] = useState(false);
+  const [section, setSection] = useState({ "Property_tableState":true,"SliderState":true,"BannerState":true,"CarouselState":true,"FooterState":true,"LoadMoreState":true });
+
+  useEffect(() => {
+    axios.get(`${import.meta.env.VITE_APP_API_URL}Masters/list`).then((res) => {
+      setVars(res.data.data);
+      setLoad(true);
+    }).catch(err => {
+      setToast({ isOpen: true, message: err.response.data.error, color: "danger" });
+    });
+  }, []);
+
 
   return (
     <IonPage>
@@ -26,8 +39,12 @@ const Properties = () => {
         />
         {isLoading && (
           <>
+            {section.SliderState && <Slider vars={vars} setSection={setSection} />}
+            
             {section.Property_tableState && <Property_table vars={vars} setSection={setSection} />}
             
+          <Footer vars={vars} setSection={setSection} />
+          
         </>
         )
         }

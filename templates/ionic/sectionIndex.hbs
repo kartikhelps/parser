@@ -3,8 +3,12 @@ import { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { IonIcon } from '@ionic/react';
 
-import { {{getIconNames data}} } from 'ionicons/icons';
 
+{{#if (getIconNames data)}}
+import { {{getIconNames data }} } from 'ionicons/icons';
+{{else}} 
+
+{{/if}}
 
 {{#each data}}
 {{#switch type}}
@@ -14,6 +18,22 @@ import {{@root.name}}Nav from "./{{@root.name}}Nav";
   {{#case "Form"}}
 import {{@root.name}}Form from "./{{@root.name}}Form";
   {{/case}}
+  {{#case "Banner"}}
+import {{@root.name}}Banner from "./{{@root.name}}Banner";
+  {{/case}}
+  {{#case "Footer"}}
+  import {{@root.name}}Footer from "./{{@root.name}}Footer";
+    {{/case}}
+    {{#case "DisplayList1"}}
+    import {{@root.name}}List from "./{{@root.name}}List";
+      {{/case}}
+      {{#case "DisplayList2"}}
+    import {{@root.name}}List from "./{{@root.name}}List";
+      {{/case}}
+      {{#case "Box"}}
+      import {{@root.name}}Box from "./{{@root.name}}Box";
+        {{/case}}
+
 {{/switch}}
 {{/each}}
 
@@ -23,32 +43,73 @@ function {{name}}({ setSection, vars }) {
   const [toastMessage, setToastMessage] = useState("");
   const [toastColor, setToastColor] = useState("");
 
+  {{#each data}}
+  {{#switch type}}
+  {{#case "Textbox"}}
+  {{#each fields}}
+  {{#ifeq "Button" fieldType}}
+  const {{name}}handle= (e) =>{
+    {{#each action.Actions}}
+
+    {{#ifeq type "ShowSection"}}
+         setSection((prev)=>({...prev, {{{objToString fields}}} }))
+    {{/ifeq}}
+    {{#ifeq type "Redirect"}}
+        history.push('/{{fields.url}}')
+    {{/ifeq}}
+    {{/each}}
+  }
+  {{/ifeq}}
+  {{/each}}
+  {{/case}}
+  {{/switch}}
+  {{/each}}
+
+
   return (
     <>
-      <IonContent>
-        <IonToast
-          isOpen={toastOpen}
-          message={toastMessage}
-          color={toastColor}
-          duration={3000}
-          onDidDismiss={() => setToastOpen(false)}
-        />
+
         {{#each data}}
         {{#switch type}}
-          {{#case "Nav"}}
+        {{#case "Nav"}}
           <{{@root.name}}Nav vars={vars} setSection={setSection} />
             {{create fields "./templates/ionic/navbar.hbs" (concat @root.path "/") (concat @root.name "Nav.tsx") @root.name}}
+          {{/case}}
+          {{#case "Footer"}}
+          <{{@root.name}}Footer vars={vars} setSection={setSection} />
+            {{create fields "./templates/ionic/footer.hbs" (concat @root.path "/") (concat @root.name "Footer.tsx") @root.name}}
           {{/case}}
           {{#case "Form"}}
           <{{@root.name}}Form vars={vars} setSection={setSection} />
            {{create fields "./templates/ionic/form.hbs" (concat @root.path "/") (concat @root.name "Form.tsx") @root.name}}
           {{/case}}
+          {{#case "DisplayList1"}}
+          <{{@root.name}}List vars={vars} setSection={setSection} />
+           {{create fields "./templates/ionic/cardlist1.hbs" (concat @root.path "/") (concat @root.name "List.tsx") @root.name}}
+          {{/case}}
+          {{#case "DisplayList2"}}
+          <{{@root.name}}List vars={vars} setSection={setSection} />
+           {{create fields "./templates/ionic/cardlist2.hbs" (concat @root.path "/") (concat @root.name "List.tsx") @root.name}}
+          {{/case}}
+          {{#case "Box"}}
+          <{{@root.name}}Box vars={vars} setSection={setSection} />
+           {{create fields "./templates/ionic/box.hbs" (concat @root.path "/") (concat @root.name "Box.tsx") @root.name}}
+          {{/case}}
+          
           {{#case "Banner"}}
           <{{@root.name}}Banner vars={vars} setSection={setSection} />
            {{create fields "./templates/ionic/banner.hbs" (concat @root.path "/") (concat @root.name "Banner.tsx") @root.name}}
           {{/case}}
           {{#case "Textbox"}}
           {{#each fields}}
+          {{#ifeq "Button" fieldType}}
+          <div>
+            <button type="submit" onClick={ {{name}}handle } >
+              {{label}}
+            </button>
+          </div>
+          {{/ifeq}}
+        
           {{#ifeq "text" fieldType}}
           <div>
             {{label}}
@@ -70,7 +131,6 @@ function {{name}}({ setSection, vars }) {
           {{/case}}
         {{/switch}}
         {{/each}}
-      </IonContent>
     </>
   );
 }

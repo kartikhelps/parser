@@ -5,6 +5,7 @@ import { IonIcon } from '@ionic/react';
 
 
 
+
 import HeaderNav from "./HeaderNav";
 
 
@@ -14,11 +15,14 @@ function Header({ setSection, vars }) {
   const [toastMessage, setToastMessage] = useState("");
   const [toastColor, setToastColor] = useState("");
 
+
+
   return (
     <>
 
           <HeaderNav vars={vars} setSection={setSection} />
             
+          
     </>
   );
 }

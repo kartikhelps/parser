@@ -6,6 +6,8 @@ import { IonIcon } from '@ionic/react';
 
 
 
+    import Property_tableList from "./Property_tableList";
+
 
 function Property_table({ setSection, vars }) {
   const history = useHistory();
@@ -13,9 +15,14 @@ function Property_table({ setSection, vars }) {
   const [toastMessage, setToastMessage] = useState("");
   const [toastColor, setToastColor] = useState("");
 
+
+
   return (
     <>
 
+          <Property_tableList vars={vars} setSection={setSection} />
+           
+          
     </>
   );
 }

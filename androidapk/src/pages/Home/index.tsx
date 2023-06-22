@@ -6,7 +6,10 @@ import environment from "../../environment"
 
 import Header from "./Header";
 import Banner from "./Banner";
+import Slider from "./Slider";
 import Carousel from "./Carousel";
+import LoadMore from "./LoadMore";
+import Content from "./Content";
 import Footer from "./Footer";
 
 const Home = () => {
@@ -16,12 +19,10 @@ const Home = () => {
 
   const [vars, setVars] = useState({});
   const [isLoading, setLoad] = useState(false);
-  const [section, setSection] = useState({ "NavbarState":true,"HeaderState":true,"BannerState":true,"CarouselState":true,"FooterState":true });
-
-
+  const [section, setSection] = useState({ "NavbarState":true,"HeaderState":true,"SliderState":true,"BannerState":true,"CarouselState":true,"FooterState":true,"LoadMoreState":true });
 
   useEffect(() => {
-    axios.get(`${environment.VITE_API} master/`).then((res) => {
+    axios.get(`${import.meta.env.VITE_APP_API_URL}Masters/list`).then((res) => {
       setVars(res.data.data);
       setLoad(true);
     }).catch(err => {
@@ -46,7 +47,13 @@ const Home = () => {
             
             {section.BannerState && <Banner vars={vars} setSection={setSection} />}
             
+            {section.SliderState && <Slider vars={vars} setSection={setSection} />}
+            
             {section.CarouselState && <Carousel vars={vars} setSection={setSection} />}
+            
+            {section.LoadMoreState && <LoadMore vars={vars} setSection={setSection} />}
+            
+            {section.ContentState && <Content vars={vars} setSection={setSection} />}
             
           <Footer vars={vars} setSection={setSection} />
           

@@ -1,5 +1,9 @@
 import React, { useState } from "react"
 import { useHistory } from 'react-router-dom';
+import { IonIcon } from '@ionic/react';
+
+
+
 
 const HamburgerMenuHeader = ({ menuItems, setSection }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -13,13 +17,17 @@ const HamburgerMenuHeader = ({ menuItems, setSection }) => {
   }
   const  aboutChange=() =>{
 
+
+    history.push('/About')
   }
   const  blogChange=() =>{
 
+
+    history.push('/Blog')
   }
 
   return (
-    <header>
+   <header style={ {display: 'flex', justifyContent: 'space-between', alignItems: 'center'} }>
       <button
         onClick={handleMenuToggle}
         style={ {
@@ -35,7 +43,6 @@ const HamburgerMenuHeader = ({ menuItems, setSection }) => {
             display: "block",
             width: "20px",
             height: "2px",
-            background: "#000",
             margin: "4px 0",
             transition: "transform 0.2s ease-in-out",
             transformOrigin: "1px",
@@ -47,7 +54,6 @@ const HamburgerMenuHeader = ({ menuItems, setSection }) => {
             display: "block",
             width: "20px",
             height: "2px",
-            background: "#000",
             margin: "4px 0",
             transition: "transform 0.2s ease-in-out",
             transformOrigin: "1px",
@@ -59,51 +65,51 @@ const HamburgerMenuHeader = ({ menuItems, setSection }) => {
             display: "block",
             width: "20px",
             height: "2px",
-            background: "#000",
             margin: "4px 0",
             transition: "transform 0.2s ease-in-out",
             transformOrigin: "1px",
           } }
         ></span>
       </button>
+
+
+      <div style={ {flexGrow: 1, textAlign: 'center'} }>
+        <h1>BuilderFloor.com</h1>
+      </div>
+
       {isMenuOpen && (
         <nav style={ { display: "block" } }>
           <ul style={ { listStyle: "none", padding: "0", margin: "0" } }>
-
                 <li
                 onClick= { titleChange }
               style={ {
                 padding: "10px",
-                background: "#f0f0f0",
+    
                 cursor: "pointer",
               } }
             >
               title
             </li>
-
                 <li
                 onClick= { aboutChange }
               style={ {
                 padding: "10px",
-                background: "#f0f0f0",
+    
                 cursor: "pointer",
               } }
             >
               about
             </li>
-
                 <li
                 onClick= { blogChange }
               style={ {
                 padding: "10px",
-                background: "#f0f0f0",
+    
                 cursor: "pointer",
               } }
             >
               blog
             </li>
-            
-
           </ul>
         </nav>
       )}

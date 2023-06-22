@@ -4,7 +4,9 @@ import { Link, useHistory } from "react-router-dom";
 import { IonIcon } from '@ionic/react';
 
 
+import { FaHome, FaSortAmountUp, FaSquare } from 'ionicons/icons';
 
+    import CarouselList from "./CarouselList";
 
 
 function Carousel({ setSection, vars }) {
@@ -13,9 +15,14 @@ function Carousel({ setSection, vars }) {
   const [toastMessage, setToastMessage] = useState("");
   const [toastColor, setToastColor] = useState("");
 
+
+
   return (
     <>
 
+          <CarouselList vars={vars} setSection={setSection} />
+           
+          
     </>
   );
 }

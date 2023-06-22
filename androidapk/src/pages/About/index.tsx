@@ -8,6 +8,9 @@ import Header from "./Header";
 import Banner from "./Banner";
 import Content from "./Content";
 import Footer from "./Footer";
+import FooterForm from "./FooterForm";
+import Contentbelow from "./Contentbelow";
+import Box from "./Box";
 
 const About = () => {
   const history = useHistory();
@@ -16,9 +19,7 @@ const About = () => {
 
   const [vars, setVars] = useState({});
   const [isLoading, setLoad] = useState(true);
-  const [section, setSection] = useState({ "BannerState":true,"ContentState":true });
-
-
+  const [section, setSection] = useState({ "BoxState":true,"BannerState":true,"ContentState":true,"FooterFormState":true,"ContentbelowState":true });
 
 
 
@@ -42,6 +43,12 @@ const About = () => {
             
           <Footer vars={vars} setSection={setSection} />
           
+            {section.FooterFormState && <FooterForm vars={vars} setSection={setSection} />}
+            
+            {section.ContentbelowState && <Contentbelow vars={vars} setSection={setSection} />}
+            
+            {section.BoxState && <Box vars={vars} setSection={setSection} />}
+            
         </>
         )
         }

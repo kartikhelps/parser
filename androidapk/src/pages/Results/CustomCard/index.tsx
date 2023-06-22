@@ -7,15 +7,19 @@ import { IonIcon } from '@ionic/react';
 
 
 
+
 function CustomCard({ setSection, vars }) {
   const history = useHistory();
   const [toastOpen, setToastOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [toastColor, setToastColor] = useState("");
 
+
+
   return (
     <>
 
+          
     </>
   );
 }

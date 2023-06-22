@@ -5,6 +5,10 @@ const jsonData = require("./pass")
 const { json } = require("body-parser")
 const createFile = async (obj, name, path) => {
   try {
+    if (fs.existsSync(path + name)) {
+      fs.unlinkSync(path + name) // Remove the existing file
+    }
+
     if (path) {
       fs.mkdirSync(path, { recursive: true })
       fs.writeFileSync(path + name, obj)
@@ -18,14 +22,15 @@ const createFile = async (obj, name, path) => {
   }
 }
 
-Handlebars.registerHelper('ifIn', function(elem, list, options) {
-  const imageObject = list.find(obj => obj.fieldType === 'image');
+Handlebars.registerHelper("ifin", function (elem, list, options) {
+  console.log(elem, list)
+  const imageObject = list.find((obj) => obj.fieldType === elem)
   if (imageObject) {
-    return options.fn(imageObject.label);
+    return options.fn(imageObject.label)
   } else {
-    return options.inverse(this);
+    return options.inverse(this)
   }
-});
+})
 
 Handlebars.registerHelper("concat", function () {
   arguments = [...arguments].slice(0, -1)
@@ -93,39 +98,43 @@ Handlebars.registerHelper("ifnoteq", function (a, b, options) {
   return options.inverse(this)
 })
 
+Handlebars.registerHelper("evalHelper", function (string,index) {
+  return JSON.parse(string)[index]
+})
 
-Handlebars.registerHelper('getIconNames', function(items, options) {
-  var iconNames = [];
-  
-  items.forEach(function(item) {
+Handlebars.registerHelper("getIconNames", function (items, options) {
+  var iconNames = []
+  items.forEach(function (item) {
     if (item.fields) {
-      item.fields.forEach(function(field) {
-        if (field.fieldType === "LIconText" || field.fieldType === "RIconText") {
-          iconNames.push(field.name);
+      item.fields.forEach(function (field) {
+        if (field.fieldType === "LIconText" || field.fieldType === "RIconText" || field.fieldType === "icon") {
+          iconNames.push(field.name)
         }
-      });
+      })
+    } else {
+      if (item.fieldType === "LIconText" || item.fieldType === "RIconText" || item.fieldType === "icon") {
+        iconNames.push(item.name)
+      }
     }
-  });
+  })
 
   // Join the icon names with a comma and return the resulting string
-  return iconNames.join(', ');
-});
-
+  return iconNames.join(", ")
+})
 
 Handlebars.registerHelper("create", function () {
   var arg = Array.prototype.slice.call(arguments, 0, arguments.length - 1)
   templateCreator({ data: arg[0], name: arg[4], path: arg[2] }, arg[1], arg[3], arg[2])
   // [{}]     {} => data
   return ""
-
 })
 
-Handlebars.registerHelper('ifIn', function(elem, list, options) {
-    if(list.indexOf(elem) > -1) {
-        return options.fn(this);
-    }
-    return options.inverse(this);
-});
+Handlebars.registerHelper("ifIn", function (elem, list, options) {
+  if (list.indexOf(elem) > -1) {
+    return options.fn(this)
+  }
+  return options.inverse(this)
+})
 
 const templateCreator = (data, file, out, path) => {
   const templateContent = fs.readFileSync(file, "utf-8")
@@ -136,21 +145,24 @@ const templateCreator = (data, file, out, path) => {
 }
 
 const main = async () => {
- 
   const selectedConfig = "ionic" // Change this to 'ionic' or other configurations as needed
 
-  if (selectedConfig === "react") {
-     await jsonData()
-  const sheetData = require("./data.json")
-    const executeReactCommands = require("./reactCommands")
-    executeReactCommands(sheetData,templateCreator)
-  } else if (selectedConfig === "ionic") {
+  try {
 
-     await jsonData("1SYD1Arng7eWa8BD2NOqFbfNsrhTT6NDioSE47W1ZqcM")
-  const sheetData = require("./data.json")
-    const executeIonicCommands = require("./ionicCommands")
-    executeIonicCommands(sheetData,templateCreator)
-
+    if (selectedConfig === "react") {
+      await jsonData()
+      const sheetData = require("./data.json")
+      const executeReactCommands = require("./reactCommands")
+      executeReactCommands(sheetData, templateCreator)
+    } else if (selectedConfig === "ionic") {
+      await jsonData("1SYD1Arng7eWa8BD2NOqFbfNsrhTT6NDioSE47W1ZqcM")
+      const sheetData = require("./data.json")
+      const executeIonicCommands = require("./ionicCommands")
+      executeIonicCommands(sheetData, templateCreator)
+    }
+  }
+  catch (err) { 
+    console.log(err)
   }
 }
 

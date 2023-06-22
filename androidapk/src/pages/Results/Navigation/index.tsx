@@ -7,15 +7,19 @@ import { IonIcon } from '@ionic/react';
 
 
 
+
 function Navigation({ setSection, vars }) {
   const history = useHistory();
   const [toastOpen, setToastOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [toastColor, setToastColor] = useState("");
 
+
+
   return (
     <>
 
+          
     </>
   );
 }

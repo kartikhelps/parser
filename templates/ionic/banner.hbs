@@ -9,17 +9,17 @@ function {{name}}Banner({ setSection, vars }) {
   const [toastColor, setToastColor] = useState("");
 
 
-  {{#ifIn "image" data}}
+  {{#ifin "image" data}}
   const backgroundImageStyle = {
     backgroundImage: `url("/assets/imgs/{{this}}")`,
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
-    height: '500px'
+    height: '300px'
   };
       {{else}}
 
-      {{/ifIn}}
+      {{/ifin}}
 
     
   return (
@@ -32,11 +32,11 @@ function {{name}}Banner({ setSection, vars }) {
         onDidDismiss={() => setToastOpen(false)}
       />
       
-      {{#ifIn "image" data}}
+      {{#ifin "image" data}}
       <div style={backgroundImageStyle} className="hero-image">
       {{else}}
       <div className="hero-image">
-      {{/ifIn}}
+      {{/ifin}}
       
         <div className="hero-text">
           {{#each data}}
