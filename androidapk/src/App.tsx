@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Results from './pages/Results';
 import About from './pages/About';
 import Properties from './pages/Properties';
+import Detail from './pages/Detail';
 
 
 
@@ -48,6 +49,10 @@ const App: React.FC = () => (
             </Route>
             <Route exact path="/Properties">
                 <Properties />
+                
+            </Route>
+            <Route exact path="/Detail">
+                <Detail />
                 
             </Route>
         </IonRouterOutlet>

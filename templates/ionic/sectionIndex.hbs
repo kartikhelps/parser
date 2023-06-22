@@ -33,6 +33,9 @@ import {{@root.name}}Banner from "./{{@root.name}}Banner";
       {{#case "Box"}}
       import {{@root.name}}Box from "./{{@root.name}}Box";
         {{/case}}
+       {{#case "Infobox"}}
+      import {{@root.name}}Infobox from "./{{@root.name}}Infobox";
+        {{/case}}  
 
 {{/switch}}
 {{/each}}
@@ -94,6 +97,10 @@ function {{name}}({ setSection, vars }) {
           {{#case "Box"}}
           <{{@root.name}}Box vars={vars} setSection={setSection} />
            {{create fields "./templates/ionic/box.hbs" (concat @root.path "/") (concat @root.name "Box.tsx") @root.name}}
+          {{/case}}
+          {{#case "Infobox"}}
+          <{{@root.name}}Infobox vars={vars} setSection={setSection} />
+           {{create fields "./templates/ionic/infobox.hbs" (concat @root.path "/") (concat @root.name "Infobox.tsx") @root.name}}
           {{/case}}
           
           {{#case "Banner"}}

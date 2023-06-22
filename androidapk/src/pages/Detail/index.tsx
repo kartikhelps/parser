@@ -5,20 +5,19 @@ import { IonButton, IonContent, IonPage, IonToast } from "@ionic/react";
 import environment from "../../environment"
 
 import Header from "./Header";
-import Banner from "./Banner";
-import Content from "./Content";
+import Box from "./Box";
+import Infobox from "./Infobox";
+import Property from "./Property";
 import Footer from "./Footer";
-import FooterForm from "./FooterForm";
-import Contentbelow from "./Contentbelow";
 
-const About = () => {
+const Detail = () => {
   const history = useHistory();
 
   const [toast, setToast] = useState({ isOpen: false, message: "", color: "" });
 
   const [vars, setVars] = useState({});
-  const [isLoading, setLoad] = useState(false);
-  const [section, setSection] = useState({ "BannerState":true,"ContentState":true,"FooterFormState":true,"ContentbelowState":true });
+  const [isLoading, setLoad] = useState(true);
+  const [section, setSection] = useState({ "BoxState":true,"InfoboxState":true });
 
 
 
@@ -36,16 +35,14 @@ const About = () => {
           <>
             <Header vars={vars} setSection={setSection} />
             
-            {section.BannerState && <Banner vars={vars} setSection={setSection} />}
+            {section.BoxState && <Box vars={vars} setSection={setSection} />}
             
-            {section.ContentState && <Content vars={vars} setSection={setSection} />}
+            {section.InfoboxState && <Infobox vars={vars} setSection={setSection} />}
+            
+            {section.PropertyState && <Property vars={vars} setSection={setSection} />}
             
           <Footer vars={vars} setSection={setSection} />
           
-            {section.FooterFormState && <FooterForm vars={vars} setSection={setSection} />}
-            
-            {section.ContentbelowState && <Contentbelow vars={vars} setSection={setSection} />}
-            
         </>
         )
         }
@@ -54,4 +51,4 @@ const About = () => {
   );
 }
 
-export default About;
+export default Detail;

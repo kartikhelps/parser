@@ -44,7 +44,7 @@ useEffect(() => {
 
 return(
   <>
-{load && data.map(d => 
+{{load && data.map(d => 
   (
 
   <div key = { d._id } style={ { border: '1px solid #ccc', borderRadius: '15px', padding: '10px', maxWidth: '400px' } }>
@@ -64,7 +64,7 @@ return(
         <span>{  d.Facing } </span>
       </div>
       <div>
-       
+      
         <span>{  d.Possession } </span>
       </div>
     </div> 

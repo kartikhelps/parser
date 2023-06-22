@@ -1,0 +1,77 @@
+import React from 'react'
+  {{#each data}}
+    {{#ifeq "LIconText" fieldType}}
+import { {{name }} } from '@iconscout/react-unicons';
+{{else}}
+{{/ifeq}}
+
+
+  {{#ifeq "RIconText" fieldType}}
+import { {{name }} } from '@iconscout/react-unicons';
+{{else}}
+{{/ifeq}}
+
+
+  {{/each}}
+
+ 
+
+const Infobox = () => {
+  return (
+    <>
+     <div style={ { gap:'15px' , alignContent:'center' , justifyContent:'center' ,border:'2px solid black' , borderRadius:'8px', margin:'15px'} }>
+      < div style={ { display:'flex' , flexDirection:'row' , gap:'15px', justifyContent:'center' }}>
+
+        <div>
+          {{#each data}}
+    {{#ifeq "LIconText" fieldType}}
+    <div style={ { display:'flex' , flexDirection:'row' }}>
+        < {{name}}  style={ { marginRight: '10px' } } size={30} />
+        <h5>{{label}}</h5>
+
+    </div>
+    {{/ifeq}}
+     {{/each}}
+        </div>
+
+        <div>
+    {{#each data}}
+    {{#ifeq "RIconText" fieldType}}
+    <div style={ { display:'flex' , flexDirection:'row' }}>
+        < {{name}}  style={ { marginRight: '10px' } } size={30}/>
+        <h5>{{label}}</h5>
+    </div>
+    {{/ifeq}}
+     {{/each}}
+
+        </div>
+    
+       </div>
+   
+   <div style={ { display:'flex' , flexDirection:'row' , justifyContent:'center' ,gap:'30px'}}> 
+     
+
+     
+     {{#each data}}
+    {{#ifeq "Button" fieldType}}
+    <button style={ { border:'2px solid black' , height:'40px' , width:'80px' } }> 
+    
+    {{#each data}}
+     {{#if "Icon" fieldType}}
+< {{name}} />    
+        {{label}}
+        {{/if}}
+        {{/each}}
+        
+     </button>
+    {{/ifeq}}
+       {{/each}}
+
+
+</div>
+    </div>
+    </>
+  )
+}
+
+export default Infobox;
