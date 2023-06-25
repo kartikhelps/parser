@@ -5,9 +5,11 @@ import { IonButton, IonContent, IonPage, IonToast } from "@ionic/react";
 import environment from "../../environment"
 
 import Header from "./Header";
+import HeadingBox from "./HeadingBox";
 import Box from "./Box";
+import ImageSlider from "./ImageSlider";
 import Infobox from "./Infobox";
-import Property from "./Property";
+import Carousel from "./Carousel";
 import Footer from "./Footer";
 
 const Detail = () => {
@@ -16,8 +18,8 @@ const Detail = () => {
   const [toast, setToast] = useState({ isOpen: false, message: "", color: "" });
 
   const [vars, setVars] = useState({});
-  const [isLoading, setLoad] = useState(true);
-  const [section, setSection] = useState({ "BoxState":true,"InfoboxState":true });
+  const [isLoading, setLoad] = useState(false);
+  const [section, setSection] = useState({ "BoxState":true,"InfoboxState":true,"HeadingBoxState":true });
 
 
 
@@ -35,11 +37,15 @@ const Detail = () => {
           <>
             <Header vars={vars} setSection={setSection} />
             
+            {section.HeadingBoxState && <HeadingBox vars={vars} setSection={setSection} />}
+            
             {section.BoxState && <Box vars={vars} setSection={setSection} />}
+            
+            {section.ImageSliderState && <ImageSlider vars={vars} setSection={setSection} />}
             
             {section.InfoboxState && <Infobox vars={vars} setSection={setSection} />}
             
-            {section.PropertyState && <Property vars={vars} setSection={setSection} />}
+            {section.CarouselState && <Carousel vars={vars} setSection={setSection} />}
             
           <Footer vars={vars} setSection={setSection} />
           

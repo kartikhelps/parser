@@ -55,14 +55,7 @@ const Infobox = () => {
      {{#each data}}
     {{#ifeq "Button" fieldType}}
     <button style={ { border:'2px solid black' , height:'40px' , width:'80px' } }> 
-    
-    {{#each data}}
-     {{#if "Icon" fieldType}}
-< {{name}} />    
-        {{label}}
-        {{/if}}
-        {{/each}}
-        
+    {{label}}    
      </button>
     {{/ifeq}}
        {{/each}}

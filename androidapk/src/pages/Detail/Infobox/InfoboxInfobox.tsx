@@ -106,12 +106,10 @@ const Infobox = () => {
 
      
     <button style={ { border:'2px solid black' , height:'40px' , width:'80px' } }> 
-    
-        
+    call    
      </button>
     <button style={ { border:'2px solid black' , height:'40px' , width:'80px' } }> 
-    
-        
+    whatsapp    
      </button>
 
 

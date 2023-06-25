@@ -4,12 +4,12 @@ import { Link, useHistory } from "react-router-dom";
 import { IonIcon } from '@ionic/react';
 
 
-import { FaHome, FaSortAmountUp, FaDirections, BiCurrentLocation } from 'ionicons/icons';
+import { FaHome, FaSortAmountUp, FaSquare } from 'ionicons/icons';
 
-    import Property_tableList from "./Property_tableList";
+    import CarouselList from "./CarouselList";
 
 
-function Property_table({ setSection, vars }) {
+function Carousel({ setSection, vars }) {
   const history = useHistory();
   const [toastOpen, setToastOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
@@ -20,11 +20,11 @@ function Property_table({ setSection, vars }) {
   return (
     <>
 
-          <Property_tableList vars={vars} setSection={setSection} />
+          <CarouselList vars={vars} setSection={setSection} />
            
           
     </>
   );
 }
 
-export default Property_table;
+export default Carousel;

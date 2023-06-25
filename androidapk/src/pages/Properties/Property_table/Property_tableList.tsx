@@ -2,7 +2,7 @@ import React, { useState,useEffect } from "react"
 import { IonIcon } from '@ionic/react';
 import axios from 'axios';
 
-import { FaHome, FaSortAmountUp, FaDirections} from 'react-icons/fa';
+import { FaHome, FaSortAmountUp, FaDirections, BiCurrentLocation } from 'react-icons/fa';
 
 
 const Rating = ({ rating }) => {
@@ -64,7 +64,7 @@ return(
         <span>{  d.Facing } </span>
       </div>
       <div>
-       
+        <BiCurrentLocation />
         <span>{  d.Possession } </span>
       </div>
     </div> 

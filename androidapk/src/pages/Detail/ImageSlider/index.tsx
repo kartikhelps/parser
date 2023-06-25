@@ -4,12 +4,12 @@ import { Link, useHistory } from "react-router-dom";
 import { IonIcon } from '@ionic/react';
 
 
-// import { FaHome, FaSortAmountUp, FaDirections, BiCurrentLocation } from 'ionicons/icons';
-
-    import PropertyList from "./PropertyList";
 
 
-function Property({ setSection, vars }) {
+      import {Slider} from "./Slider";
+
+
+function ImageSlider({ setSection, vars }) {
   const history = useHistory();
   const [toastOpen, setToastOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
@@ -20,11 +20,14 @@ function Property({ setSection, vars }) {
   return (
     <>
 
-          <PropertyList vars={vars} setSection={setSection} />
+          <Slider 
+          props={ image  }
+          />
+           
            
           
     </>
   );
 }
 
-export default Property;
+export default ImageSlider;

@@ -36,6 +36,12 @@ import {{@root.name}}Banner from "./{{@root.name}}Banner";
        {{#case "Infobox"}}
       import {{@root.name}}Infobox from "./{{@root.name}}Infobox";
         {{/case}}  
+         {{#case "HeadingBox"}}
+      import {{@root.name}}HeadingBox from "./{{@root.name}}HeadingBox";
+        {{/case}}
+        {{#case "ImageSlider"}}
+      import {Slider} from "./Slider";
+        {{/case}}
 
 {{/switch}}
 {{/each}}
@@ -101,6 +107,17 @@ function {{name}}({ setSection, vars }) {
           {{#case "Infobox"}}
           <{{@root.name}}Infobox vars={vars} setSection={setSection} />
            {{create fields "./templates/ionic/infobox.hbs" (concat @root.path "/") (concat @root.name "Infobox.tsx") @root.name}}
+          {{/case}}
+           {{#case "HeadingBox"}}
+          <{{@root.name}}HeadingBox vars={vars} setSection={setSection} />
+           {{create fields "./templates/ionic/headingbox.hbs" (concat @root.path "/") (concat @root.name "HeadingBox.tsx") @root.name}}
+          {{/case}}
+          {{#case "ImageSlider"}}
+          <Slider 
+          props={ {{ fields.[0].mapField }}  }
+          />
+           {{create fields "./templates/ionic/slider.hbs" (concat @root.path "/") "Slider.js" @root.name}}
+           {{create fields "./templates/ionic/diffslider.hbs" (concat @root.path "/") "DiffSlider.js" @root.name}}
           {{/case}}
           
           {{#case "Banner"}}

@@ -1,0 +1,39 @@
+import React from 'react' ; 
+
+{{#each data}}
+{{#ifeq "Icon" fieldType}}
+import {{name}} from '@iconscout/react-unicons'
+{{/ifeq}}
+{{/each}}
+
+
+const HeadingBox = () => { 
+        return (
+<div style={ { display:"flex" , flexDirection:"row" } }>
+    <div style={ { flex:'1' } }>
+  {{#each data}}
+ {{#ifeq "TextBox" fieldType}}
+      <h1>{{label}}</h1>
+    {{/ifeq}}
+  {{/each}}
+    </div>
+
+    <div style={ { display:"flex" , flexDirection:"row" , flex:'1' ,justifyContent:"center" ,gap:"16px"  } }>
+       
+  {{#each data}}
+{{#ifeq "Icon" fieldType}}
+ <div style={ { marginTop:"40px"}}>
+      < {{name}} size={30} />
+       </div>
+    {{/ifeq}}
+  {{/each}}
+       
+
+    </div>
+
+   
+</div>
+
+) } 
+
+export default HeadingBox;    <div style={ { display:"flex" , flexDirection:"row" , flex:'1' ,justifyContent:"center" ,gap:"16px"  } }>

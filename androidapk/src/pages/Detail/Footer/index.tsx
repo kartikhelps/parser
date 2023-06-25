@@ -22,10 +22,6 @@ function Footer({ setSection, vars }) {
           
         
           <div>
-            CONTACT US
-          </div>
-        
-          <div>
             The right move to choose your new home.
           </div>
         
