@@ -1,0 +1,145 @@
+import React, { useState,useEffect } from "react"
+import { IonIcon } from '@ionic/react';
+import axios from 'axios';
+
+{{#if (getIconNames data)}}
+import { {{getIconNames data }} } from 'react-icons/fa';
+{{else}}
+{{/if}}
+
+
+const Rating = ({ rating }) => {
+  return (
+    <div>
+      {[...Array(5)].map((_, index) => {
+        index += 1;
+        return (
+          <span
+            key={index}
+            style={ { color: index <= rating ? 'gold' : 'gray' } }
+          >
+            &#9733;
+          </span>
+        );
+      })}
+    </div>
+  );
+};
+
+const CustomCard = ({ vars,setSection }) => {
+const [data, setData] = useState(null);
+const [filter, setFilter] = useState(null);
+const [load,setLoad] = useState(false)
+const [toast, setToast] = useState({ isOpen: false, message: "", color: "" });
+
+
+{{#each data}}
+{{#ifeq fieldType "onload"}}
+{{#each action.Actions}}
+{{#ifeq type "GetQuery"}}
+useEffect(() => {
+  const params = new URLSearchParams(location.search);
+  const urlFilter = params.get('filter');
+
+  if (urlFilter) {
+    try {
+      setFilter(JSON.parse(decodeURIComponent(urlFilter)));
+    } catch (e) {
+      console.error('Failed to parse filter:', e);
+    }
+  }
+}, []);
+{{/ifeq}}
+
+{{#ifeq type "CallAPI"}}
+useEffect(() => {
+  {{#ifeq fields.type "filter"}}
+  const filterString = filter && Object.keys(filter).length ? JSON.stringify(filter) : "";
+  axios.get(`${import.meta.env.VITE_APP_API_URL}{{fields.route}}`,{ 
+    params: { 
+      filter: filterString 
+    } 
+  }).then((res) => {
+  {{else}}
+  axios.{{fields.type}}(`${import.meta.env.VITE_APP_API_URL}{{fields.route}}`).then((res) => {
+    {{/ifeq}}
+    {{#each Success}}
+    {{#ifeq type "setVar"}}
+    setData(res.data.data);
+    {{/ifeq}}
+    {{/each}}
+    setLoad(true);
+  }).catch(err => {
+    setToast({ isOpen: true, message: err.response.data.error, color: "danger" });
+  });
+
+
+{{#ifeq fields.type "filter"}}
+}, [filter]);
+  {{else}}
+}, []);
+    {{/ifeq}}
+
+{{/ifeq}}
+
+{{/each}}
+{{/ifeq}}
+{{/each}}
+
+
+
+return(
+  <>
+{load && data?.map(d => 
+  (
+
+  <div key = { d._id } style={ { border: '1px solid #ccc', borderRadius: '15px', padding: '10px', maxWidth: '400px' } }>
+    {{#each data}}
+    {{#ifeq fieldType "Image"}}
+    <img src={d.{{mapField}} } alt="Card top" style={ { width: '100%', borderTopLeftRadius: '15px', borderTopRightRadius: '15px' } } />
+{{/ifeq}}
+  {{#ifeq fieldType "Title"}}
+    <h2>{ d.{{mapField}} }</h2>
+    {{/ifeq}}
+    {{#ifeq fieldType "Text"}}
+
+    <h4>{ d.{{mapField}} }</h4>
+    {{/ifeq}}
+    {{/each}}
+    <div style={ { display: 'flex', justifyContent: 'space-around', alignItems: 'center', padding: '10px 0' } }>
+      {{#each data}}
+      {{#ifeq fieldType "LIconText"}}
+      <div>
+        <{{name}} />
+        <span>{  d.{{mapField}} } </span>
+      </div>
+      {{/ifeq}}
+      {{#ifeq fieldType "RIconText"}}
+      <div>
+        <span>{  d.{{mapField}} } </span>
+        <{{name}} />
+      </div>
+      {{/ifeq}}
+      {{/each}}
+    </div> 
+    
+    <div style={ { display: 'flex', justifyContent: 'space-between', alignItems: 'center' } }>
+      {{#each data}}
+      {{#ifeq fieldType "Rating"}}
+      <Rating rating={5} />
+      {{/ifeq}}
+      {{#ifeq fieldType "Button"}}
+      <button style={ { padding: '10px 20px', backgroundColor: 'blue', color: 'white', border: 'none', borderRadius: '5px' } }>
+        {d.{{mapField}} }
+      </button>
+      {{/ifeq}}
+      {{/each}}
+    </div>
+  </div>)
+  )
+}
+</>
+  )
+};
+  
+export default CustomCard;
