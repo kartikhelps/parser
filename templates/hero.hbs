@@ -1,9 +1,9 @@
 import { Button, Checkbox, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 function {{name}}Banner({ setSection, vars }) {
-  const history = useHistory();
+
   const [toastOpen, setToastOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [toastColor, setToastColor] = useState("");
