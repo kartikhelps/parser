@@ -1,0 +1,110 @@
+import React, { useState } from "react"
+import { useHistory } from 'react-router-dom';
+import { IonIcon } from '@ionic/react';
+
+
+
+
+const HamburgerMenuHeader = ({ menuItems, setSection }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const history = useHistory();
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
+
+  {{#each data}}
+  {{#ifnoteq "Title" fieldType}}
+  const  {{name}}Change=() =>{
+
+      {{#each action.Actions}}
+
+{{#ifeq type "ShowSection"}}
+     setSection((prev)=>({...prev, {{{objToString fields}}} }))
+{{/ifeq}}
+{{#ifeq type "Redirect"}}
+    history.push('/{{fields.url}}')
+{{/ifeq}}
+{{/each}}
+  }
+  {{/ifnoteq}}
+{{/each}}
+
+  return (
+   <header style={ {display: 'flex', justifyContent: 'space-between', alignItems: 'center'} }>
+      <button
+        onClick={handleMenuToggle}
+        style={ {
+          background: "none",
+          border: "none",
+          padding: "0",
+          cursor: "pointer",
+        } }
+      >
+        <span
+          className={isMenuOpen ? "menu-icon open" : "menu-icon"}
+          style={ {
+            display: "block",
+            width: "20px",
+            height: "2px",
+            margin: "4px 0",
+            transition: "transform 0.2s ease-in-out",
+            transformOrigin: "1px",
+          } }
+        ></span>
+        <span
+          className={isMenuOpen ? "menu-icon open" : "menu-icon"}
+          style={ {
+            display: "block",
+            width: "20px",
+            height: "2px",
+            margin: "4px 0",
+            transition: "transform 0.2s ease-in-out",
+            transformOrigin: "1px",
+          } }
+        ></span>
+        <span
+          className={isMenuOpen ? "menu-icon open" : "menu-icon"}
+          style={ {
+            display: "block",
+            width: "20px",
+            height: "2px",
+            margin: "4px 0",
+            transition: "transform 0.2s ease-in-out",
+            transformOrigin: "1px",
+          } }
+        ></span>
+      </button>
+
+
+      {{#ifin "Title" data}}
+      <div style={ {flexGrow: 1, textAlign: 'center'} }>
+        <h1>{{this}}</h1>
+      </div>
+      {{else}}
+{{/ifin}}
+
+      {isMenuOpen && (
+        <nav style={ { display: "block" } }>
+          <ul style={ { listStyle: "none", padding: "0", margin: "0" } }>
+            {{#each data}}
+            {{#ifnoteq "Title" fieldType}}
+                <li
+                onClick= { {{name}}Change }
+              style={ {
+                padding: "10px",
+    
+                cursor: "pointer",
+              } }
+            >
+              {{name}}
+            </li>
+            {{/ifnoteq}}
+              {{/each}}
+          </ul>
+        </nav>
+      )}
+    </header>
+  )
+}
+
+export default HamburgerMenuHeader
