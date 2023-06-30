@@ -27,7 +27,8 @@ const Rating = ({ rating }) => {
 };
 
 const CustomCard = ({ vars,setSection }) => {
-const [data,setData] = useState()
+const [data, setData] = useState(null);
+const [filter, setFilter] = useState(null);
 const [load,setLoad] = useState(false)
 const [toast, setToast] = useState({ isOpen: false, message: "", color: "" });
 
@@ -35,10 +36,33 @@ const [toast, setToast] = useState({ isOpen: false, message: "", color: "" });
 {{#each data}}
 {{#ifeq fieldType "onload"}}
 {{#each action.Actions}}
+{{#ifeq type "GetQuery"}}
+useEffect(() => {
+  const params = new URLSearchParams(location.search);
+  const urlFilter = params.get('filter');
+
+  if (urlFilter) {
+    try {
+      setFilter(JSON.parse(decodeURIComponent(urlFilter)));
+    } catch (e) {
+      console.error('Failed to parse filter:', e);
+    }
+  }
+}, []);
+{{/ifeq}}
 
 {{#ifeq type "CallAPI"}}
 useEffect(() => {
+  {{#ifeq fields.type "filter"}}
+  const filterString = filter && Object.keys(filter).length ? JSON.stringify(filter) : "";
+  axios.get(`${import.meta.env.VITE_APP_API_URL}{{fields.route}}`,{ 
+    params: { 
+      filter: filterString 
+    } 
+  }).then((res) => {
+  {{else}}
   axios.{{fields.type}}(`${import.meta.env.VITE_APP_API_URL}{{fields.route}}`).then((res) => {
+    {{/ifeq}}
     {{#each Success}}
     {{#ifeq type "setVar"}}
     setData(res.data.data);
@@ -48,7 +72,14 @@ useEffect(() => {
   }).catch(err => {
     setToast({ isOpen: true, message: err.response.data.error, color: "danger" });
   });
+
+
+{{#ifeq fields.type "filter"}}
+}, [filter]);
+  {{else}}
 }, []);
+    {{/ifeq}}
+
 {{/ifeq}}
 
 {{/each}}
@@ -59,7 +90,7 @@ useEffect(() => {
 
 return(
   <>
-{load && data.map(d => 
+{load && data?.map(d => 
   (
 
   <div key = { d._id } style={ { border: '1px solid #ccc', borderRadius: '15px', padding: '10px', maxWidth: '400px' } }>

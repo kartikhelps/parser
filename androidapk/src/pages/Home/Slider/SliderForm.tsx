@@ -9,15 +9,15 @@ const SliderForm = ({ setSection, vars }) => {
   const [toast, setToast] = useState({ open: false, status: '', msg: '' });
   
 
-  const [sliderpriceValue, setSliderpriceValue] = useState({ lower: 25000000, upper: 35000000 });
+  const [sliderpriceRangeValue, setSliderpriceRangeValue] = useState({ lower: 25000000, upper: 35000000 });
 
-  const handleSliderpriceChange = (e) => {
-    setSliderpriceValue({ lower: e.detail.value.lower, upper: e.detail.value.upper });
+  const handleSliderpriceRangeChange = (e) => {
+    setSliderpriceRangeValue({ lower: e.detail.value.lower, upper: e.detail.value.upper });
   };
 
   const [formData, setFormData] = useState({
-    location: '',
-    price: '',
+    locations: '',
+    priceRange: '',
   });
 
   const handleChange = (e) => {
@@ -31,19 +31,13 @@ const SliderForm = ({ setSection, vars }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const sendData = {
-      location: formData.location,
-      price : {min:sliderpriceValue.lower,max:sliderpriceValue.upper},
+      locations: formData.locations,
+      priceRange : {min:sliderpriceRangeValue.lower,max:sliderpriceRangeValue.upper},
     };
 
-    axios.filter(import.meta.env.VITE_API + 'properties/list', {
-      ...sendData
-    })
-      .then((res) => {
-        setVars(res.data.data);
-      })
-      .catch((err) => {
-        setToast({ open: true, msg: err.response.data.error, status: 'error' });
-      });
+    const queryString = encodeURIComponent(JSON.stringify(sendData));
+    history.push(`/Properties?filter=${queryString}`);
+
   };
 
   return (
@@ -58,23 +52,23 @@ const SliderForm = ({ setSection, vars }) => {
       <form onSubmit={handleSubmit}>
         <IonItem>
           <IonLabel>City</IonLabel>
-          <IonSelect name="location" value={formData.location } onIonChange={handleChange}>
+          <IonSelect name="locations" value={formData.locations } onIonChange={handleChange}>
             { vars.city.map((v) => (
             <IonSelectOption key={v.Value} value={ v.Value }>{v.Label}</IonSelectOption>
           ))}
           </IonSelect>
         </IonItem>
         <IonItem lines="none">
-          <IonLabel slot="start">{sliderpriceValue.lower}</IonLabel>
+          <IonLabel slot="start">{sliderpriceRangeValue.lower}</IonLabel>
           <IonRange
             dualKnobs={true}
             min={ 25000000 }
             max={ 35000000 }
-            name="price"
-            value={sliderpriceValue}
-            onIonChange={handleSliderpriceChange}
+            name="priceRange"
+            value={sliderpriceRangeValue}
+            onIonChange={handleSliderpriceRangeChange}
           />  
-          <IonLabel slot="end">{sliderpriceValue.upper}</IonLabel>
+          <IonLabel slot="end">{sliderpriceRangeValue.upper}</IonLabel>
         </IonItem>
         <IonButton type="submit" onClick={handleSubmit} >
           Search

@@ -15,11 +15,11 @@ const About = () => {
   const history = useHistory();
 
   const [toast, setToast] = useState({ isOpen: false, message: "", color: "" });
+  const [isLoading, setLoad] = useState(true);
+
 
   const [vars, setVars] = useState({});
-  const [isLoading, setLoad] = useState(false);
   const [section, setSection] = useState({ "BannerState":true,"ContentState":true,"FooterFormState":true,"ContentbelowState":true });
-
 
 
   return (

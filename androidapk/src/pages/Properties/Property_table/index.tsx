@@ -4,9 +4,10 @@ import { Link, useHistory } from "react-router-dom";
 import { IonIcon } from '@ionic/react';
 
 
-import { FaHome, FaSortAmountUp, FaDirections, BiCurrentLocation } from 'ionicons/icons';
+// import { FaHome, FaSortAmountUp, FaDirections, BiCurrentLocation } from 'ionicons/icons';
 
     import Property_tableList from "./Property_tableList";
+import Filter from "./Filter";
 
 
 function Property_table({ setSection, vars }) {
@@ -19,7 +20,7 @@ function Property_table({ setSection, vars }) {
 
   return (
     <>
-
+<Filter />
           <Property_tableList vars={vars} setSection={setSection} />
            
           

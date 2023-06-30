@@ -24,7 +24,8 @@ const Rating = ({ rating }) => {
 };
 
 const CustomCard = ({ vars,setSection }) => {
-const [data,setData] = useState()
+const [data, setData] = useState(null);
+const [filter, setFilter] = useState(null);
 const [load,setLoad] = useState(false)
 const [toast, setToast] = useState({ isOpen: false, message: "", color: "" });
 
@@ -37,14 +38,17 @@ useEffect(() => {
   }).catch(err => {
     setToast({ isOpen: true, message: err.response.data.error, color: "danger" });
   });
+
+
 }, []);
+
 
 
 
 
 return(
   <>
-{load && data.map(d => 
+{load && data?.map(d => 
   (
 
   <div key = { d._id } style={ { border: '1px solid #ccc', borderRadius: '15px', padding: '10px', maxWidth: '400px' } }>

@@ -12,10 +12,14 @@ const Properties = () => {
   const history = useHistory();
 
   const [toast, setToast] = useState({ isOpen: false, message: "", color: "" });
+  const [isLoading, setLoad] = useState(false);
+
 
   const [vars, setVars] = useState({});
-  const [isLoading, setLoad] = useState(false);
   const [section, setSection] = useState({ "Property_tableState":true,"SliderState":true,"BannerState":true,"CarouselState":true,"FooterState":true,"LoadMoreState":true });
+
+
+
 
   useEffect(() => {
     axios.get(`${import.meta.env.VITE_APP_API_URL}Masters/list`).then((res) => {
@@ -25,6 +29,8 @@ const Properties = () => {
       setToast({ isOpen: true, message: err.response.data.error, color: "danger" });
     });
   }, []);
+
+
 
 
   return (

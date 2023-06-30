@@ -52,10 +52,16 @@ const {{name}}Form = ({ setSection, vars }) => {
     {{#each data}}
     {{#ifeq fieldType "Button"}} 
     {{#each action.Actions}}
+    {{#ifeq type "RedirectQuery"}}
+    const queryString = encodeURIComponent(JSON.stringify(sendData));
+    history.push(`/{{fields.url}}?filter=${queryString}`);
+{{/ifeq}}
+
     {{#ifeq type "CallAPI"}}
     axios.{{fields.type}}(import.meta.env.VITE_API + '{{fields.route}}', {
       ...sendData
     })
+
       .then((res) => {
         {{#each Success}}
         {{#ifeq type "setVar"}}
