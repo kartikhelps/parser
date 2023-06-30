@@ -1,0 +1,211 @@
+import React, { useState } from 'react';
+import { IonButton, IonInput,IonRange, IonLabel, IonSelect, IonSelectOption, IonItem, IonCheckbox, IonRadioGroup, IonRadio, IonAlert, IonToast,IonTextarea } from '@ionic/react';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+
+const {{name}}Form = ({ setSection, vars }) => {
+  const history = useHistory();
+  let Regex = { password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/, email: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/ };
+  const [toast, setToast] = useState({ open: false, status: '', msg: '' });
+  
+
+  {{#each data}}    
+  {{#ifeq fieldType "Slider"}} 
+  const [slider{{name}}Value, setSlider{{name}}Value] = useState({ lower: {{evalHelper defaultValue 0}}, upper: {{evalHelper defaultValue 1}} });
+
+  const handleSlider{{name}}Change = (e) => {
+    setSlider{{name}}Value({ lower: e.detail.value.lower, upper: e.detail.value.upper });
+  };
+  {{/ifeq}}
+  {{/each}}
+
+  const [formData, setFormData] = useState({
+    {{#each data}}    
+    {{#ifnoteq fieldType "Button"}} 
+    {{name}}: '',
+    {{/ifnoteq}}
+    {{/each}}
+  });
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: type === 'checkbox' ? checked : value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const sendData = {
+      {{#each data}}
+      {{#if mapField}}
+      {{#ifeq "Slider" fieldType}}
+      {{name}} : {min:slider{{name}}Value.lower,max:slider{{name}}Value.upper},
+      {{else}}
+      {{name}}: formData.{{name}},
+      {{/ifeq}}
+      {{/if}}
+      {{/each}}
+    };
+
+    {{#each data}}
+    {{#ifeq fieldType "Button"}} 
+    {{#each action.Actions}}
+    {{#ifeq type "RedirectQuery"}}
+    const queryString = encodeURIComponent(JSON.stringify(sendData));
+    history.push(`/{{fields.url}}?filter=${queryString}`);
+{{/ifeq}}
+
+    {{#ifeq type "CallAPI"}}
+    axios.{{fields.type}}(import.meta.env.VITE_API + '{{fields.route}}', {
+      ...sendData
+    })
+
+      .then((res) => {
+        {{#each Success}}
+        {{#ifeq type "setVar"}}
+        setVars(res.data.data);
+        {{/ifeq}}
+        {{#ifeq type "ShowSection"}}
+        setSection((prev) => ({ ...prev, {{{objToString fields}}} }));
+        {{/ifeq}}
+        {{#ifeq type "Redirect"}}
+        history.push('/{{fields.url}}');
+        {{/ifeq}}
+        {{/each}}
+      })
+      .catch((err) => {
+        setToast({ open: true, msg: err.response.data.error, status: 'error' });
+      });
+    {{/ifeq}}
+    {{/each}}
+    {{/ifeq}}
+    {{/each}}
+  };
+
+  return (
+    <>
+      <IonToast
+        isOpen={toast.open}
+        message={toast.msg}
+        duration={3000}
+        onDidDismiss={() => setToast(false)}
+      />
+
+      <form onSubmit={handleSubmit}>
+        {{#each data}}
+        {{#switch fieldType}}
+        {{#case "Textbox"}}
+        <IonItem>
+          <IonLabel position="floating">{{label}}</IonLabel>
+          <IonInput
+            name="{{name}}"
+            placeholder="{{placeholder}}"
+            value={formData.{{name}} }
+            onIonChange={handleChange}
+            placeholder="{{label}}"
+          ></IonInput>
+        </IonItem>
+        {{/case}}
+        {{#case "Textarea"}}
+        <IonItem>
+          <IonLabel position="floating">{{label}}</IonLabel>
+          <IonTextarea
+            name="{{name}}"
+            value={formData.{{name}} }
+            placeholder="{{placeholder}}"
+            onIonChange={handleChange}
+            placeholder="{{label}}"
+            rows={3}
+          ></IonTextarea>
+        </IonItem>
+        {{/case}}
+        {{#case "Phone"}}
+        <IonItem>
+          <IonLabel position="floating">{{label}}</IonLabel>
+          <IonInput
+            name="{{name}}"
+            type="tel"
+            placeholder="{{placeholder}}"
+            value={formData.{{name}} }
+            onIonChange={handleChange}
+            placeholder="{{label}}"
+            rows={3}
+          ></IonInput>
+        </IonItem>
+        {{/case}}
+        {{#case "Password"}}
+        <IonItem>
+          <IonLabel position="floating">{{label}}</IonLabel>
+          <IonInput
+            name="{{name}}"
+            placeholder="{{placeholder}}"
+            value={formData.{{name}} }
+            onIonChange={handleChange}
+            type="password"
+          ></IonInput>
+        </IonItem>
+        {{/case}}
+        {{#case "Dropdown"}}
+        <IonItem>
+          <IonLabel>{{label}}</IonLabel>
+          <IonSelect name="{{name}}" value={formData.{{name}} } onIonChange={handleChange}>
+            { vars.{{masters}}.map((v) => (
+            <IonSelectOption key={v.Value} value={ v.Value }>{v.Label}</IonSelectOption>
+          ))}
+          </IonSelect>
+        </IonItem>
+        {{/case}}
+        {{#case "Checkbox"}}
+        <IonItem>
+          <IonLabel>{{label}}</IonLabel>
+          <IonCheckbox
+            name="{{name}}"
+            checked={formData.{{name}} }
+            onIonChange={handleChange}
+          ></IonCheckbox>
+        </IonItem>
+        {{/case}}
+        {{#case "Options"}}
+        <IonItem>
+          <IonRadioGroup name="radio" value={formData.{{name}} } onIonChange={handleChange}>
+            <IonLabel>{{label}}</IonLabel>
+            <IonItem>
+              <IonRadio value="option1" />
+              <IonLabel>Option 1</IonLabel>
+            </IonItem>
+            <IonItem>
+              <IonRadio value="option2" />
+              <IonLabel>Option 2</IonLabel>
+            </IonItem>
+          </IonRadioGroup>
+        </IonItem>
+        {{/case}}
+        {{#case "Slider"}}
+        <IonItem lines="none">
+          <IonLabel slot="start">{slider{{name}}Value.lower}</IonLabel>
+          <IonRange
+            dualKnobs={true}
+            min={ {{evalHelper defaultValue 0}} }
+            max={ {{evalHelper defaultValue 1}} }
+            name="{{name}}"
+            value={slider{{name}}Value}
+            onIonChange={handleSlider{{name}}Change}
+          />  
+          <IonLabel slot="end">{slider{{name}}Value.upper}</IonLabel>
+        </IonItem>
+        {{/case}}
+        {{#case "Button"}}
+        <IonButton type="submit" onClick={handleSubmit} >
+          {{label}}
+        </IonButton>
+        {{/case}}
+        {{/switch}}
+        {{/each}}
+      </form>
+    </>
+  );
+};
+
+export default {{name}}Form;

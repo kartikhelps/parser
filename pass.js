@@ -3,18 +3,21 @@ var fs = require("fs")
 const fileOp = require("./txtOperator")
 const credentials = require("./pass.json")
 
-const SPREADSHEET_ID = "1mVzip6mAkCG_Smk4ddQyPJp6q9P1lc3VHi6DJK7QRzA"
 
-async function getRowsFromGoogleSheet() {
+async function getRowsFromGoogleSheet(value) {
+
+  // const SPREADSHEET_ID = "1qCwrCW8v6hDHPWuvwGsZrUgDrV41or7AQWsgWADCyoo"
+  const SPREADSHEET_ID ="1mVzip6mAkCG_Smk4ddQyPJp6q9P1lc3VHi6DJK7QRzA"
   const doc = new GoogleSpreadsheet(SPREADSHEET_ID)
   await doc.useServiceAccountAuth(credentials)
   await doc.loadInfo()
   const sheet = doc.sheetsByIndex[1]
+
   return await sheet.getRows()
 }
 
-async function googleSheetToJSON() {
-  const rows = await getRowsFromGoogleSheet()
+async function googleSheetToJSON(value) {
+  const rows = await getRowsFromGoogleSheet(value)
   const output = { screens: [] }
   const currentScreen = {}
 
@@ -95,3 +98,6 @@ module.exports = googleSheetToJSON
 // const customString = "Onload(\n ShowSection(Signin)|\n HideSection(Signup)| \n HideSection(Verification)|\nCallAPI(Type(GET)|Route(master/)|Success(SetVar(masters))|Error(SetErr(Response.err)))";
 // const jsonObject = actionJson(customString);
 // console.log(JSON.stringify(jsonObject, null, 2));
+
+
+
