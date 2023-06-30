@@ -12,6 +12,21 @@ import {{@root.name}}Nav from '{{concat "./" @root.name}}Nav'
       {{#case "Form"}}
     import {{@root.name}}Form from '{{concat "./" @root.name}}Form'
     {{/case}}
+     {{#case "ListView"}}
+    import {{@root.name}}ListView from '{{concat "./" @root.name}}ListView'
+    {{/case}}
+    {{#case "DisplayCard"}}
+    import {{@root.name}}DisplayCard from '{{concat "./" @root.name}}DisplayCard'
+    {{/case}}
+     {{#case "Banner"}}
+    import {{@root.name}}Banner from '{{concat "./" @root.name}}Banner'
+    {{/case}}
+    {{#case "Footer"}}
+    import {{@root.name}}Footer from '{{concat "./" @root.name}}Footer'
+    {{/case}}
+     {{#case "CardInfo"}}
+    import {{@root.name}}CustomCard from '{{concat "./" @root.name}}CustomCard'
+    {{/case}}
       {{/switch}}
     
       {{/each}}
@@ -33,6 +48,27 @@ function {{name}}({setSection,vars}) {
       <{{@root.name}}Form vars={vars} setSection={setSection}/>
       {{create fields "./templates/form.hbs" (concat @root.path "/") (concat @root.name "Form.jsx") @root.name}}
     {{/case}}
+     {{#case "ListView"}}
+      <{{@root.name}}ListView vars={vars} setSection={setSection}/>
+      {{create fields "./templates/listView.hbs" (concat @root.path "/") (concat @root.name "ListView.jsx") @root.name}}
+    {{/case}} 
+     
+     {{#case "DisplayCard"}}
+      <{{@root.name}}DisplayCard vars={vars} setSection={setSection}/>
+      {{create fields "./templates/displayCard.hbs" (concat @root.path "/") (concat @root.name "DisplayCard.jsx") @root.name}}
+    {{/case}} 
+    {{#case "Banner"}}
+      <{{@root.name}}Banner vars={vars} setSection={setSection}/>
+      {{create fields "./templates/banner.hbs" (concat @root.path "/") (concat @root.name "Banner.jsx") @root.name}}
+    {{/case}} 
+     {{#case "Footer"}}
+      <{{@root.name}}Footer vars={vars} setSection={setSection}/>
+      {{create fields "./templates/footer.hbs" (concat @root.path "/") (concat @root.name "Footer.jsx") @root.name}}
+    {{/case}} 
+      {{#case "CardInfo"}}
+      <{{@root.name}}Card vars={vars} setSection={setSection}/>
+      {{create fields "./templates/customCard.hbs" (concat @root.path "/") (concat @root.name "CustomCard.jsx") @root.name}}
+    {{/case}} 
       {{/switch}}
        {{/each}}
     </>

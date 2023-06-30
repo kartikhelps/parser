@@ -152,6 +152,18 @@ const templateCreator = (data, file, out, path) => {
   createFile(fileContent, out, path)
 }
 
+
+function executeReactCommands(sheetData) {
+  sh.exec("npm install -g vite");
+  sh.exec("npm create vite@latest myapp -- --template react");
+  fs.copyFileSync("./templates/package.hbs", "./myapp/package.json");
+  sh.cd("./myapp");
+  sh.exec("npm i");
+  sh.cd("..");
+  templateCreator(sheetData, "./templates/app.hbs", "App.jsx", "./myapp/src/")
+  // Other commands if necessary
+}
+
 const main = async () => {
   const selectedConfig = "ionic" // Change this to 'ionic' or other configurations as needed
 
