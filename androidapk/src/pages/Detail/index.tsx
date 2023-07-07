@@ -18,6 +18,8 @@ const Detail = () => {
   const history = useHistory();
 
   const [toast, setToast] = useState({ isOpen: false, message: "", color: "" });
+  const [isLoading, setLoad] = useState(true);
+
 
   const [vars, setVars] = useState({});
   const [isLoading, setLoad] = useState(true);

@@ -2,7 +2,7 @@ import React, { useState,useEffect } from "react"
 import { IonIcon } from '@ionic/react';
 import axios from 'axios';
 
-import { FaHome, FaSortAmountUp, FaDirections, BiCurrentLocation } from 'react-icons/fa';
+import { FaHome, FaSortAmountUp, FaDirections } from 'react-icons/fa';
 
 
 const Rating = ({ rating }) => {
@@ -24,29 +24,52 @@ const Rating = ({ rating }) => {
 };
 
 const CustomCard = ({ vars,setSection }) => {
-const [data,setData] = useState()
+const [data, setData] = useState(null);
+const [filter, setFilter] = useState(null);
 const [load,setLoad] = useState(false)
 const [toast, setToast] = useState({ isOpen: false, message: "", color: "" });
+
+
+useEffect(() => {
+  const params = new URLSearchParams(location.search);
+  const urlFilter = params.get('filter');
+
+  if (urlFilter) {
+    try {
+      setFilter(JSON.parse(decodeURIComponent(urlFilter)));
+    } catch (e) {
+      console.error('Failed to parse filter:', e);
+    }
+  }
+}, []);
 
 
 
 
 
 useEffect(() => {
-  axios.filter(`${import.meta.env.VITE_APP_API_URL}properties/list`).then((res) => {
+  const filterString = filter && Object.keys(filter).length ? JSON.stringify(filter) : "";
+  axios.get(`${import.meta.env.VITE_APP_API_URL}properties/list`,{ 
+    params: { 
+      filter: filterString 
+    } 
+  }).then((res) => {
     setData(res.data.data);
     setLoad(true);
   }).catch(err => {
     setToast({ isOpen: true, message: err.response.data.error, color: "danger" });
   });
-}, []);
+
+
+}, [filter]);
+
 
 
 
 
 return(
   <>
-{load && data.map(d => 
+{load && data?.map(d => 
   (
 
   <div key = { d._id } style={ { border: '1px solid #ccc', borderRadius: '15px', padding: '10px', maxWidth: '400px' } }>
@@ -66,7 +89,7 @@ return(
         <span>{  d.Facing } </span>
       </div>
       <div>
-        <BiCurrentLocation />
+        {/* <BiCurrentLocation /> */}
         <span>{  d.Possession } </span>
       </div>
     </div> 

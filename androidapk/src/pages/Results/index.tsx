@@ -12,9 +12,10 @@ const Results = () => {
   const history = useHistory();
 
   const [toast, setToast] = useState({ isOpen: false, message: "", color: "" });
+  const [isLoading, setLoad] = useState(false);
+
 
   const [vars, setVars] = useState({});
-  const [isLoading, setLoad] = useState(false);
   const [section, setSection] = useState({ "NavbarState":true,"HeaderState":true,"BannerState":true,"ListViewState":true,"FooterState":true });
 
   useEffect(() => {
@@ -25,6 +26,18 @@ const Results = () => {
       setToast({ isOpen: true, message: err.response.data.error, color: "danger" });
     });
   }, []);
+
+
+  useEffect(() => {
+    axios.get(`${import.meta.env.VITE_APP_API_URL}properties/list`).then((res) => {
+      setVars(res.data.data);
+      setLoad(true);
+    }).catch(err => {
+      setToast({ isOpen: true, message: err.response.data.error, color: "danger" });
+    });
+  }, []);
+
+
 
 
   return (

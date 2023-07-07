@@ -56,14 +56,13 @@ axios.{{fields.type}}(import.meta.env.VITE_API +  '{{fields.route}}').then((res)
   {{#each data }}
     {{#switch name}}
     {{#case "Onload_Config"}}
-    { 
+  
       
 {{#each components.[0].fields.[0].action.Actions}}
 {{#ifeq type "CallAPI"}}
 isLoading &&
 {{/ifeq}}
 {{/each}}
-<>
       {{/case}}
       {{#case "Header"}}
       <{{name}} vars={vars} setSection={setSection} />
@@ -75,8 +74,6 @@ isLoading &&
     {{/default}}
     {{/switch}}
   {{/each}}
-  </>
-}
   </>
   )
 }

@@ -35,6 +35,9 @@ const SliderForm = ({ setSection, vars }) => {
       priceRange : {min:sliderpriceRangeValue.lower,max:sliderpriceRangeValue.upper},
     };
 
+    const queryString = encodeURIComponent(JSON.stringify(sendData));
+    history.push(`/Properties?filter=${queryString}`);
+
   };
 
   return (

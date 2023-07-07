@@ -1,0 +1,57 @@
+import { Button, Checkbox, Grid, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
+function {{name}}Banner({ setSection, vars }) {
+  const [toastOpen, setToastOpen] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  {{!-- const [toastColor, setToastColor] = useState(""); --}}
+
+  {{#ifIn "image" data}}
+  const backgroundImageStyle = {
+    backgroundImage: `url("/assets/imgs/{{this}}")`,
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    height: '500px'
+  };
+  {{else}}
+  const backgroundImageStyle = {}; // Add any additional styles you want for the background image
+  {{/ifIn}}
+
+  return (
+    <>
+      {{!-- <Toast
+        open={toastOpen}
+        message={toastMessage}
+        severity={toastColor}
+        autoHideDuration={3000}
+        onClose={() => setToastOpen(false)}
+      /> --}}
+      
+      {{#ifIn "image" data}}
+      <div style={backgroundImageStyle} className="hero-image">
+      {{else}}
+      <div className="hero-image">
+      {{/ifIn}}
+      
+        <div className="hero-text">
+          {{#each data}}
+          {{#ifeq fieldType "text"}}
+          <Typography variant="h6" component="div">
+            {{label}}
+          </Typography>
+          {{/ifeq}}
+          {{#ifeq fieldType "button"}}
+          <Button variant="contained" onClick={() => console.log("gsdhifg")}>
+            {{label}}
+          </Button>
+          {{/ifeq}}
+          {{/each}}
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default {{name}}Banner;

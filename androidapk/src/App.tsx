@@ -7,7 +7,7 @@ import Results from './pages/Results';
 import About from './pages/About';
 import Properties from './pages/Properties';
 import Detail from './pages/Detail';
-import GenericHeader from './pages/Admin';
+import {GenericHeader} from './pages/Detail/Admin';
 
 import { Provider } from 'react-redux';
 import store from './redux/store';

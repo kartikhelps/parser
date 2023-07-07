@@ -50,9 +50,17 @@ Handlebars.registerHelper("regex", function (value, name, options) {
   }
 })
 
-Handlebars.registerHelper("action", function (value, options) {
-  return ""
-})
+Handlebars.registerHelper("checkCallAPIType", function (components, options) {
+  for (const component of components) {
+    if (component.type === "CallAPI") {
+      return options.fn(this);
+    }
+  }
+  return options.inverse(this);
+});
+
+
+
 
 Handlebars.registerHelper("switch", function (value, options) {
   this.switch_value = value
@@ -75,7 +83,7 @@ Handlebars.registerHelper("default", function (options) {
 })
 
 Handlebars.registerHelper("ifeq", function (a, b, options) {
-  if (a == b) {
+  if (a === b) {
     return options.fn(this)
   }
   return options.inverse(this)
@@ -144,13 +152,25 @@ const templateCreator = (data, file, out, path) => {
   createFile(fileContent, out, path)
 }
 
+
+function executeReactCommands(sheetData) {
+  sh.exec("npm install -g vite");
+  sh.exec("npm create vite@latest myapp -- --template react");
+  fs.copyFileSync("./templates/package.hbs", "./myapp/package.json");
+  sh.cd("./myapp");
+  sh.exec("npm i");
+  sh.cd("..");
+  templateCreator(sheetData, "./templates/app.hbs", "App.jsx", "./myapp/src/")
+  // Other commands if necessary
+}
+
 const main = async () => {
   const selectedConfig = "ionic" // Change this to 'ionic' or other configurations as needed
 
   try {
 
     if (selectedConfig === "react") {
-      await jsonData()
+      await jsonData("1SYD1Arng7eWa8BD2NOqFbfNsrhTT6NDioSE47W1ZqcM")
       const sheetData = require("./data.json")
       const executeReactCommands = require("./reactCommands")
       executeReactCommands(sheetData, templateCreator)

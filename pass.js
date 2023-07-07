@@ -35,6 +35,7 @@ async function googleSheetToJSON(value) {
     const section = currentScreen.sections.find((section) => section.name === row.Section_name)
 
     if (!section) {
+      // console.log(row.action,"if")
       const newSection = {
         name: row.Section_name,
         components: [
@@ -62,8 +63,11 @@ async function googleSheetToJSON(value) {
       }
 
       currentScreen.sections.push(newSection)
-    } else {
+    } 
+    else {
+      // console.log(row.action)
       section.components[0].fields.push({
+
         name: row.Fieldname,
         fieldType: row.FieldType,
         mandatory: row.Mandatory === "Yes",

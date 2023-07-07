@@ -14,9 +14,18 @@ const {{name}} = () => {
   const history = useHistory();
 
   const [toast, setToast] = useState({ isOpen: false, message: "", color: "" });
+  {{#each data}}
+  {{#ifeq name "Onload_Config"}}
+  {{#checkCallAPIType components.[0].fields.[0].action.Actions }}
+  const [isLoading, setLoad] = useState(false);
+  {{else}}
+  const [isLoading, setLoad] = useState(true);
+  {{/checkCallAPIType}}
+  {{/ifeq}}
+  {{/each}}
+
 
   const [vars, setVars] = useState({});
-  const [isLoading, setLoad] = useState(false);
   {{#each data}}
   {{#ifeq name "Onload_Config"}}
   {{#each components.[0].fields.[0].action.Actions}}
@@ -24,6 +33,8 @@ const {{name}} = () => {
   const [section, setSection] = useState({ {{{objToString fields}}} });
   {{/ifeq}}
   {{#ifeq type "CallAPI"}}
+
+
   useEffect(() => {
     axios.{{fields.type}}(`${import.meta.env.VITE_APP_API_URL}{{fields.route}}`).then((res) => {
       {{#each Success}}
@@ -36,6 +47,8 @@ const {{name}} = () => {
       setToast({ isOpen: true, message: err.response.data.error, color: "danger" });
     });
   }, []);
+
+
   {{/ifeq}}
 
   {{/each}}
