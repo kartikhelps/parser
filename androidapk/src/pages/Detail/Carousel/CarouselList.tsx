@@ -32,6 +32,7 @@ const [toast, setToast] = useState({ isOpen: false, message: "", color: "" });
 
 useEffect(() => {
   axios.get(`${import.meta.env.VITE_APP_API_URL}properties/list`).then((res) => {
+    {{ console.log(res.data.data )}}
     setData(res.data.data);
     setLoad(true);
   }).catch(err => {
@@ -46,7 +47,7 @@ return(
   <>
 {load && data.map(d => 
   (
-
+  
   <div key = { d._id } style={ { border: '1px solid #ccc', borderRadius: '15px', padding: '10px', maxWidth: '400px' } }>
     <img src={d.Image } alt="Card top" style={ { width: '100%', borderTopLeftRadius: '15px', borderTopRightRadius: '15px' } } />
     <h2>{ d.Title }</h2>

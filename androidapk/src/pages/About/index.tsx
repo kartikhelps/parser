@@ -21,7 +21,6 @@ const About = () => {
   const [section, setSection] = useState({ "BannerState":true,"ContentState":true,"FooterFormState":true,"ContentbelowState":true });
 
 
-
   return (
     <IonPage>
       <IonContent>

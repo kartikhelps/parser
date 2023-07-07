@@ -17,6 +17,7 @@ const Properties = () => {
   const [isLoading, setLoad] = useState(false);
   const [section, setSection] = useState({ "Property_tableState":true,"SliderState":true,"BannerState":true,"CarouselState":true,"FooterState":true,"LoadMoreState":true });
 
+
   useEffect(() => {
     axios.get(`${import.meta.env.VITE_APP_API_URL}Masters/list`).then((res) => {
       setVars(res.data.data);

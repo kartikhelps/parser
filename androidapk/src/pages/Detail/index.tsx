@@ -11,6 +11,8 @@ import ImageSlider from "./ImageSlider";
 import Infobox from "./Infobox";
 import Carousel from "./Carousel";
 import Footer from "./Footer";
+import {useApiData} from './../../hooks/useApiData.js'
+
 
 const Detail = () => {
   const history = useHistory();
@@ -18,8 +20,14 @@ const Detail = () => {
   const [toast, setToast] = useState({ isOpen: false, message: "", color: "" });
 
   const [vars, setVars] = useState({});
-  const [isLoading, setLoad] = useState(false);
-  const [section, setSection] = useState({ "BoxState":true,"InfoboxState":true,"HeadingBoxState":true });
+  const [isLoading, setLoad] = useState(true);
+  const [section, setSection] = useState({ "BoxState":true,"InfoboxState":true,"HeadingBoxState":true ,CarouselState:"true"});
+ 
+  // const { data, isLoading, error } = useApiData (
+  //   'GET',
+  //   'Masters/list',
+  //   'Master',
+  // );
 
 
 
@@ -41,7 +49,7 @@ const Detail = () => {
             
             {section.BoxState && <Box vars={vars} setSection={setSection} />}
             
-            {section.ImageSliderState && <ImageSlider vars={vars} setSection={setSection} />}
+            {/* {section.ImageSliderState && <ImageSlider vars={vars} setSection={setSection} />} */}
             
             {section.InfoboxState && <Infobox vars={vars} setSection={setSection} />}
             

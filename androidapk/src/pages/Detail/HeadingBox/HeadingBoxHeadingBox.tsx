@@ -1,7 +1,7 @@
 import React from 'react' ; 
 
-import UilShareAlt  from '@iconscout/react-unicons'
-import UilHeart  from '@iconscout/react-unicons'
+import {UilShareAlt}  from '@iconscout/react-unicons'
+import {UilHeart}  from '@iconscout/react-unicons'
 
 
 const HeadingBox = () => { 
@@ -28,4 +28,4 @@ const HeadingBox = () => {
 
 ) } 
 
-export default HeadingBox;    <div style={ { display:"flex" , flexDirection:"row" , flex:'1' ,justifyContent:"center" ,gap:"16px"  } }>
+export default HeadingBox;   

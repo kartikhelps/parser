@@ -7,7 +7,10 @@ import Results from './pages/Results';
 import About from './pages/About';
 import Properties from './pages/Properties';
 import Detail from './pages/Detail';
+import GenericHeader from './pages/Admin';
 
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 
 /* Core CSS required for Ionic components to work properly */
@@ -32,10 +35,11 @@ import './theme/variables.css';
 setupIonicReact();
 
 const App: React.FC = () => (
+    <Provider store={store}>
 <IonApp>
     <IonReactRouter>
         <IonRouterOutlet>
-            <Route exact path="/">
+            {/* <Route exact path="/">
                 <Home />
                 
             </Route>
@@ -48,16 +52,22 @@ const App: React.FC = () => (
                 
             </Route>
             <Route exact path="/Properties">
-                <Properties />
+                <Properties /> */}
                 
-            </Route>
+            {/* </Route> */}
             <Route exact path="/Detail">
                 <Detail />
                 
             </Route>
+             <Route exact path="/Admin">
+                <GenericHeader />
+                
+            </Route>
+
         </IonRouterOutlet>
     </IonReactRouter>
 </IonApp>
+</Provider>
 );
 
 export default App;

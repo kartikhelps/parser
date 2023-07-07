@@ -30,8 +30,10 @@ const [toast, setToast] = useState({ isOpen: false, message: "", color: "" });
 
 
 
+
+
 useEffect(() => {
-  axios.get(`${import.meta.env.VITE_APP_API_URL}properties/list`).then((res) => {
+  axios.filter(`${import.meta.env.VITE_APP_API_URL}properties/list`).then((res) => {
     setData(res.data.data);
     setLoad(true);
   }).catch(err => {
