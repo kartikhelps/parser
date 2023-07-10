@@ -7,10 +7,10 @@ import Results from './pages/Results';
 import About from './pages/About';
 import Properties from './pages/Properties';
 import Detail from './pages/Detail';
-import {GenericHeader} from './pages/Detail/Admin';
-
+import GenericHeader from './pages/Admin';
+import Admin from './pages/Admin';
 import { Provider } from 'react-redux';
-import store from './redux/store';
+import store from './redux/store.js';
 
 
 /* Core CSS required for Ionic components to work properly */
@@ -31,6 +31,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import { users } from './pages/Data';
 
 setupIonicReact();
 
@@ -55,12 +56,13 @@ const App: React.FC = () => (
                 <Properties /> */}
                 
             {/* </Route> */}
-            <Route exact path="/Detail">
+            {/* <Route exact path="/Detail">
                 <Detail />
                 
-            </Route>
+            </Route> */}
              <Route exact path="/Admin">
-                <GenericHeader />
+                <Admin />
+                
                 
             </Route>
 

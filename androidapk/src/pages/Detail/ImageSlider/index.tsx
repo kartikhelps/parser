@@ -21,7 +21,7 @@ function ImageSlider({ setSection, vars }) {
     <>
 
           <Slider 
-          props={ image  }
+          props={ Image}
           />
            
            

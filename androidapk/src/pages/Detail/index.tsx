@@ -18,7 +18,7 @@ const Detail = () => {
   const history = useHistory();
 
   const [toast, setToast] = useState({ isOpen: false, message: "", color: "" });
-  const [isLoading, setLoad] = useState(true);
+  // const [isLoading, setLoad] = useState(true);
 
 
   const [vars, setVars] = useState({});
@@ -51,7 +51,7 @@ const Detail = () => {
             
             {section.BoxState && <Box vars={vars} setSection={setSection} />}
             
-            {/* {section.ImageSliderState && <ImageSlider vars={vars} setSection={setSection} />} */}
+            {section.ImageSliderState && <ImageSlider vars={vars} setSection={setSection} />}
             
             {section.InfoboxState && <Infobox vars={vars} setSection={setSection} />}
             
