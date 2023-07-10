@@ -12,6 +12,7 @@ import Infobox from "./Infobox";
 import Carousel from "./Carousel";
 import Footer from "./Footer";
 import {useApiData} from './../../hooks/useApiData.js'
+import { width } from "@mui/system";
 
 
 const Detail = () => {
@@ -51,11 +52,12 @@ const Detail = () => {
             
             {section.BoxState && <Box vars={vars} setSection={setSection} />}
             
-            {section.ImageSliderState && <ImageSlider vars={vars} setSection={setSection} />}
+            {/* {section.ImageSliderState && <ImageSlider vars={vars} setSection={setSection} />} */}
             
             {section.InfoboxState && <Infobox vars={vars} setSection={setSection} />}
-            
+            {/* <div style={ { display:"flex" , height:"max-content", width:"800px"} }> */}
             {section.CarouselState && <Carousel vars={vars} setSection={setSection} />}
+            {/* </div> */}
             
           <Footer vars={vars} setSection={setSection} />
           

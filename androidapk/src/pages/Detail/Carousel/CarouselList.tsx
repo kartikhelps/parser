@@ -44,7 +44,7 @@ useEffect(() => {
 }, []);
 
 
-
+console.log(data)
 
 
 return(
@@ -53,29 +53,29 @@ return(
   (
   
   <div key = { d._id } style={ { border: '1px solid #ccc', borderRadius: '15px', padding: '10px', maxWidth: '400px' } }>
-    <img src={d.Image } alt="Card top" style={ { width: '100%', borderTopLeftRadius: '15px', borderTopRightRadius: '15px' } } />
-    <h2>{ d.Title }</h2>
+    <img src={d.images[0] } alt="Card top" style={ { width: '100%', borderTopLeftRadius: '15px', borderTopRightRadius: '15px' } } />
+    <h2>{ d.title }</h2>
 
     <h4>{ d.Location }</h4>
     <div style={ { display: 'flex', justifyContent: 'space-around', alignItems: 'center', padding: '10px 0' } }>
       <div>
         <FaHome />
-        <span>{  d.Accommodation } </span>
+        <span>{  d.accommodation } </span>
       </div>
       <div>
         <FaSortAmountUp />
-        <span>{  d.Floor } </span>
+        <span>{  d.floor } </span>
       </div>
       <div>
         <FaSquare />
-        <span>{  d.Size } </span>
+        <span>{  d.size } </span>
       </div>
     </div> 
     
     <div style={ { display: 'flex', justifyContent: 'space-between', alignItems: 'center' } }>
       <Rating rating={5} />
       <button style={ { padding: '10px 20px', backgroundColor: 'blue', color: 'white', border: 'none', borderRadius: '5px' } }>
-        {d.Price }
+        {d.price }
       </button>
     </div>
   </div>)

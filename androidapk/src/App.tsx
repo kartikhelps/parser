@@ -56,10 +56,10 @@ const App: React.FC = () => (
                 <Properties /> */}
                 
             {/* </Route> */}
-            {/* <Route exact path="/Detail">
+            <Route exact path="/Detail">
                 <Detail />
                 
-            </Route> */}
+            </Route>
              <Route exact path="/Admin">
                 <Admin />
                 
